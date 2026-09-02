@@ -4,6 +4,7 @@ import RecipeList from '../components/Recipe/RecipeList';
 
 const RecipesPage = () => {
   const [favorites, setFavorites] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleFavoriteToggle = (recipe) => {
     const alreadyFavorite = favorites.some(
@@ -21,12 +22,23 @@ const RecipesPage = () => {
     }
   };
 
+  const filteredRecipes = recipesData.filter((recipe) =>
+    recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <main>
       <h1>Recipes</h1>
 
+      <input
+        type="text"
+        placeholder="Search recipes..."
+        value={searchTerm}
+        onChange={(event) => setSearchTerm(event.target.value)}
+      />
+
       <RecipeList
-        recipes={recipesData}
+        recipes={filteredRecipes}
         favorites={favorites}
         onFavoriteToggle={handleFavoriteToggle}
       />
