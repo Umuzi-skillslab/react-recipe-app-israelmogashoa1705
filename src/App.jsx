@@ -12,6 +12,8 @@ import NotFound from './pages/NotFound';
 import { recipesData } from './data/recipesData';
 
 function App() {
+  // Favorites are stored in the parent so multiple pages can use the same state.
+  const [favorites, setFavorites] = useState([]);
   return (
     <BrowserRouter>
       <Navbar />
