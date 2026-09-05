@@ -1,6 +1,10 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import { recipesData } from '../data/recipesData';
+import SearchBar from '../components/UI/SearchBar';
 import RecipeList from '../components/Recipe/RecipeList';
+import Loading from '../components/UI/Loading';
 
 const RecipesPage = () => {
   const [favorites, setFavorites] = useState([]);

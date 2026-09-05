@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navigation/Navbar';
 
-import Navbar from './components/Navigation/Navbar';
 import Home from './pages/Home';
 import RecipesPage from './pages/RecipesPage';
 import RecipeDetailPage from './pages/RecipeDetailPage';
@@ -112,10 +111,10 @@ function App() {
 
 
   return (
-    <Bro>
+    <BrowserRouter>
       <Navbar favoriteCount={favorites.length} />
 
-      <>
+      <Routes>
         <Route
           path="/"
           element={
