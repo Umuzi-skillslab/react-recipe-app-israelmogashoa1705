@@ -1,11 +1,15 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navigation/Navbar';
 
+import Navbar from './components/Navigation/Navbar';
 import Home from './pages/Home';
 import RecipesPage from './pages/RecipesPage';
+import RecipeDetailPage from './pages/RecipeDetailPage';
 import MealPlannerPage from './pages/MealPlannerPage';
 import FavoritesPage from './pages/FavoritesPage';
-import RecipeDetailPage from './pages/RecipeDetailPage';
+import NotFound from './pages/NotFound';
+
+import { recipesData } from './data/recipesData';
 
 function App() {
   return (
