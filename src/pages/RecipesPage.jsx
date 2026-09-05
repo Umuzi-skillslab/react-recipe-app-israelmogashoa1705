@@ -25,6 +25,17 @@ const RecipesPage = ({
         .toLowerCase()
         .includes(searchTerm.toLowerCase());
 
+      const matchesCategory =
+        selectedCategory === 'all' ||
+        recipe.category === selectedCategory;
+
+
+
+
+
+
+        
+
       const handleFavoriteToggle = (recipe) => {
         const alreadyFavorite = favorites.some(
           (favorite) => favorite.id === recipe.id
