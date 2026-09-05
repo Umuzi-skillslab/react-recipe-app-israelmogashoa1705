@@ -40,7 +40,14 @@ function App() {
     }
   }, []);
 
-  
+  // Save favorites whenever the favorites state changes.
+  useEffect(() => {
+    localStorage.setItem(
+      'savoraFavorites',
+      JSON.stringify(favorites)
+    );
+  }, [favorites]);
+
   return (
     <BrowserRouter>
       <Navbar />
