@@ -56,6 +56,13 @@ function App() {
     );
   }, [mealPlan]);
 
+  // Add a recipe to favorites or remove it if it is already saved.
+  const handleFavoriteToggle = (recipe) => {
+    setFavorites((currentFavorites) => {
+      const alreadyFavorite = currentFavorites.some(
+        (favorite) => favorite.id === recipe.id
+      );
+
   return (
     <BrowserRouter>
       <Navbar />
