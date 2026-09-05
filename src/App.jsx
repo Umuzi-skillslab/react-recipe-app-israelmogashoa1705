@@ -14,6 +14,18 @@ import { recipesData } from './data/recipesData';
 function App() {
   // Favorites are stored in the parent so multiple pages can use the same state.
   const [favorites, setFavorites] = useState([]);
+
+  // Meal planner state is also lifted to App because several components will use it.
+    const [mealPlan, setMealPlan] = useState({
+    monday: { breakfast: null, lunch: null, dinner: null },
+    tuesday: { breakfast: null, lunch: null, dinner: null },
+    wednesday: { breakfast: null, lunch: null, dinner: null },
+    thursday: { breakfast: null, lunch: null, dinner: null },
+    friday: { breakfast: null, lunch: null, dinner: null },
+    saturday: { breakfast: null, lunch: null, dinner: null },
+    sunday: { breakfast: null, lunch: null, dinner: null },
+  });
+
   return (
     <BrowserRouter>
       <Navbar />
