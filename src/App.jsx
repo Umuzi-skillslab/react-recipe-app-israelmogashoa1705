@@ -71,6 +71,18 @@ function App() {
     });
   };
 
+  // Add a recipe to a specific day and meal slot.
+  const handleAddToMealPlan = (day, meal, recipe) => {
+    setMealPlan((currentMealPlan) => ({
+      ...currentMealPlan,
+      [day]: {
+        ...currentMealPlan[day],
+        [meal]: recipe,
+      },
+    }));
+  };
+
+
   return (
     <BrowserRouter>
       <Navbar />
