@@ -82,6 +82,17 @@ function App() {
     }));
   };
 
+  // Remove a recipe from a specific meal slot.
+  const handleRemoveFromMealPlan = (day, meal) => {
+    setMealPlan((currentMealPlan) => ({
+      ...currentMealPlan,
+      [day]: {
+        ...currentMealPlan[day],
+        [meal]: null,
+      },
+    }));
+  };
+
 
   return (
     <BrowserRouter>
