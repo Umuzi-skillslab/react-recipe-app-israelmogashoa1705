@@ -16,7 +16,7 @@ function App() {
   const [favorites, setFavorites] = useState([]);
 
   // Meal planner state is also lifted to App because several components will use it.
-    const [mealPlan, setMealPlan] = useState({
+  const [mealPlan, setMealPlan] = useState({
     monday: { breakfast: null, lunch: null, dinner: null },
     tuesday: { breakfast: null, lunch: null, dinner: null },
     wednesday: { breakfast: null, lunch: null, dinner: null },
@@ -62,6 +62,14 @@ function App() {
       const alreadyFavorite = currentFavorites.some(
         (favorite) => favorite.id === recipe.id
       );
+
+      return alreadyFavorite
+        ? currentFavorites.filter(
+          (favorite) => favorite.id !== recipe.id
+        )
+        : [...currentFavorites, recipe];
+    });
+  };
 
   return (
     <BrowserRouter>
