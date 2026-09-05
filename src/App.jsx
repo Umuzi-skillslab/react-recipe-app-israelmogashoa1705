@@ -48,6 +48,14 @@ function App() {
     );
   }, [favorites]);
 
+  // Save the weekly meal plan whenever it changes.
+  useEffect(() => {
+    localStorage.setItem(
+      'savoraMealPlan',
+      JSON.stringify(mealPlan)
+    );
+  }, [mealPlan]);
+
   return (
     <BrowserRouter>
       <Navbar />
