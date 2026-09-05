@@ -69,6 +69,16 @@ const RecipesPage = ({
     sortOption,
   ]);
 
+  const handleClearFilters = () => {
+    setSearchTerm('');
+    setSelectedCategory('all');
+    setSelectedCuisine('all');
+    setSelectedDifficulty('all');
+    setSortOption('title');
+  };
+
+  
+
 
 
 
