@@ -26,6 +26,21 @@ function App() {
     sunday: { breakfast: null, lunch: null, dinner: null },
   });
 
+  // Load saved favorites and meal plans when the application first starts.
+  useEffect(() => {
+    const savedFavorites = localStorage.getItem('savoraFavorites');
+    const savedMealPlan = localStorage.getItem('savoraMealPlan');
+
+    if (savedFavorites) {
+      setFavorites(JSON.parse(savedFavorites));
+    }
+
+    if (savedMealPlan) {
+      setMealPlan(JSON.parse(savedMealPlan));
+    }
+  }, []);
+
+  
   return (
     <BrowserRouter>
       <Navbar />
