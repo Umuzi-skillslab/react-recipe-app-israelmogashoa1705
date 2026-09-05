@@ -29,12 +29,20 @@ const RecipesPage = ({
         selectedCategory === 'all' ||
         recipe.category === selectedCategory;
 
+      const matchesCuisine =
+        selectedCuisine === 'all' ||
+        recipe.cuisine === selectedCuisine;
+
+      const matchesDifficulty =
+        selectedDifficulty === 'all' ||
+        recipe.difficulty === selectedDifficulty;
 
 
 
 
 
-        
+
+
 
       const handleFavoriteToggle = (recipe) => {
         const alreadyFavorite = favorites.some(
