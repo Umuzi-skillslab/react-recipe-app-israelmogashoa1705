@@ -113,10 +113,18 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar favoriteCount={favorites.length} />
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <Home
+              recipes={recipesData}
+            />
+          }
+        />
+          
         <Route path="/recipes" element={<RecipesPage />} />
         <Route path="/recipes/:id" element={<RecipeDetailPage />} />
         <Route path="/meal-planner" element={<MealPlannerPage />} />
