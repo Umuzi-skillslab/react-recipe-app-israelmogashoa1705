@@ -124,7 +124,19 @@ function App() {
             />
           }
         />
-          
+
+        <Route
+          path="/recipes"
+          element={
+            <RecipesPage
+              recipes={recipesData}
+              favorites={favorites}
+              onFavoriteToggle={handleFavoriteToggle}
+            />
+          }
+        />
+
+        
         <Route path="/recipes" element={<RecipesPage />} />
         <Route path="/recipes/:id" element={<RecipeDetailPage />} />
         <Route path="/meal-planner" element={<MealPlannerPage />} />
