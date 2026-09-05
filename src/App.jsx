@@ -112,10 +112,10 @@ function App() {
 
 
   return (
-    <BrowserRouter>
+    <Bro>
       <Navbar favoriteCount={favorites.length} />
 
-      <Routes>
+      <>
         <Route
           path="/"
           element={
@@ -147,11 +147,43 @@ function App() {
           }
         />
 
-        
-        <Route path="/recipes" element={<RecipesPage />} />
-        <Route path="/recipes/:id" element={<RecipeDetailPage />} />
-        <Route path="/meal-planner" element={<MealPlannerPage />} />
-        <Route path="/favorites" element={<FavoritesPage />} />
+        <Route
+          path="/recipes/:id"
+          element={
+            <RecipeDetailPage
+              recipes={recipesData}
+              favorites={favorites}
+              onFavoriteToggle={handleFavoriteToggle}
+              onAddToMealPlan={handleAddToMealPlan}
+            />
+          }
+        />
+
+
+        <Route
+          path="/meal-planner"
+          element={
+            <MealPlannerPage
+              recipes={recipesData}
+              mealPlan={mealPlan}
+              onAddMeal={handleAddToMealPlan}
+              onRemoveMeal={handleRemoveFromMealPlan}
+              onClearWeek={handleClearMealPlan}
+            />
+          }
+        />
+
+        <Route
+          path="/favorites"
+          element={
+            <FavoritesPage
+              favorites={favorites}
+              onFavoriteToggle={handleFavoriteToggle}
+            />
+          }
+        />
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
