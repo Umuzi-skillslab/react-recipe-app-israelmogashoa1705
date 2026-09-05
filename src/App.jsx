@@ -93,6 +93,23 @@ function App() {
     }));
   };
 
+  // Clear every meal slot in the current weekly plan.
+  const handleClearMealPlan = () => {
+    const emptyPlan = Object.keys(mealPlan).reduce(
+      (plan, day) => ({
+        ...plan,
+        [day]: {
+          breakfast: null,
+          lunch: null,
+          dinner: null,
+        },
+      }),
+      {}
+    );
+
+    setMealPlan(emptyPlan);
+  };
+
 
   return (
     <BrowserRouter>
