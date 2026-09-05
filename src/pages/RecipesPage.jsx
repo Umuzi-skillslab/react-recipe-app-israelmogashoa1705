@@ -6,48 +6,63 @@ import SearchBar from '../components/UI/SearchBar';
 import RecipeList from '../components/Recipe/RecipeList';
 import Loading from '../components/UI/Loading';
 
-const RecipesPage = () => {
-  const [favorites, setFavorites] = useState([]);
+const RecipesPage = ({
+  recipes,
+  favorites,
+  onFavoriteToggle,
+}) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCuisine, setSelectedCuisine] = useState('all');
+  const [selectedDifficulty, setSelectedDifficulty] = useState('all');
+  const [sortOption, setSortOption] = useState('title');
+  const [isLoading] = useState(false);
 
-  const handleFavoriteToggle = (recipe) => {
-    const alreadyFavorite = favorites.some(
-      (favorite) => favorite.id === recipe.id
-    );
+  // Filter and sort the recipe data whenever the user's selections change.
+  const filteredRecipes = useMemo(() => {
+    const filtered = recipes.filter((recipe) => {
+      const matchesSearch = recipe.title
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
 
-    if (alreadyFavorite) {
-      setFavorites(
-        favorites.filter(
-          (favorite) => favorite.id !== recipe.id
-        )
+      const handleFavoriteToggle = (recipe) => {
+        const alreadyFavorite = favorites.some(
+          (favorite) => favorite.id === recipe.id
+        );
+
+        if (alreadyFavorite) {
+          setFavorites(
+            favorites.filter(
+              (favorite) => favorite.id !== recipe.id
+            )
+          );
+        } else {
+          setFavorites([...favorites, recipe]);
+        }
+      };
+
+      const filteredRecipes = recipesData.filter((recipe) =>
+        recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
-    } else {
-      setFavorites([...favorites, recipe]);
-    }
-  };
 
-  const filteredRecipes = recipesData.filter((recipe) =>
-    recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+      return (
+        <main>
+          <h1>Recipes</h1>
 
-  return (
-    <main>
-      <h1>Recipes</h1>
+          <input
+            type="text"
+            placeholder="Search recipes..."
+            value={searchTerm}
+            onChange={(event) => setSearchTerm(event.target.value)}
+          />
 
-      <input
-        type="text"
-        placeholder="Search recipes..."
-        value={searchTerm}
-        onChange={(event) => setSearchTerm(event.target.value)}
-      />
+          <RecipeList
+            recipes={filteredRecipes}
+            favorites={favorites}
+            onFavoriteToggle={handleFavoriteToggle}
+          />
+        </main>
+      );
+    };
 
-      <RecipeList
-        recipes={filteredRecipes}
-        favorites={favorites}
-        onFavoriteToggle={handleFavoriteToggle}
-      />
-    </main>
-  );
-};
-
-export default RecipesPage;
+    export default RecipesPage;
