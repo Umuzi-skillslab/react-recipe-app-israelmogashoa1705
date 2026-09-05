@@ -37,51 +37,59 @@ const RecipesPage = ({
         selectedDifficulty === 'all' ||
         recipe.difficulty === selectedDifficulty;
 
-
-
-
-
-
-
-
-      const handleFavoriteToggle = (recipe) => {
-        const alreadyFavorite = favorites.some(
-          (favorite) => favorite.id === recipe.id
-        );
-
-        if (alreadyFavorite) {
-          setFavorites(
-            favorites.filter(
-              (favorite) => favorite.id !== recipe.id
-            )
-          );
-        } else {
-          setFavorites([...favorites, recipe]);
-        }
-      };
-
-      const filteredRecipes = recipesData.filter((recipe) =>
-        recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-
       return (
-        <main>
-          <h1>Recipes</h1>
-
-          <input
-            type="text"
-            placeholder="Search recipes..."
-            value={searchTerm}
-            onChange={(event) => setSearchTerm(event.target.value)}
-          />
-
-          <RecipeList
-            recipes={filteredRecipes}
-            favorites={favorites}
-            onFavoriteToggle={handleFavoriteToggle}
-          />
-        </main>
+        matchesSearch &&
+        matchesCategory &&
+        matchesCuisine &&
+        matchesDifficulty
       );
+    });
+
+
+
+
+
+
+
+
+    const handleFavoriteToggle = (recipe) => {
+      const alreadyFavorite = favorites.some(
+        (favorite) => favorite.id === recipe.id
+      );
+
+      if (alreadyFavorite) {
+        setFavorites(
+          favorites.filter(
+            (favorite) => favorite.id !== recipe.id
+          )
+        );
+      } else {
+        setFavorites([...favorites, recipe]);
+      }
     };
 
-    export default RecipesPage;
+    const filteredRecipes = recipesData.filter((recipe) =>
+      recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    return (
+      <main>
+        <h1>Recipes</h1>
+
+        <input
+          type="text"
+          placeholder="Search recipes..."
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+        />
+
+        <RecipeList
+          recipes={filteredRecipes}
+          favorites={favorites}
+          onFavoriteToggle={handleFavoriteToggle}
+        />
+      </main>
+    );
+  };
+
+  export default RecipesPage;
