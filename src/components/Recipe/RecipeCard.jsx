@@ -8,45 +8,68 @@ const RecipeCard = ({
   isFavorite = false,
   onFavoriteToggle,
 }) => {
+  // Calculate the total preparation and cooking time before rendering.
   const totalTime = recipe.prepTime + recipe.cookTime;
 
+  // Convert the difficulty into a visual indicator for the card.
+  const difficultyIcon =
+    recipe.difficulty === 'easy'
+      ? '🟢'
+      : recipe.difficulty === 'medium'
+        ? '🟡'
+        : '🔴';
+
+
   return (
-    <Card>
+    <Card className={isFavorite ? 'favorite-card' : ''}>
       <img
         src={recipe.image}
         alt={recipe.title}
         className="recipe-image"
       />
 
-      <h2>{recipe.title}</h2>
+      <div className="recipe-card-content">
+        <span className="recipe-category">
+          {recipe.category}
+        </span>
 
-      <p>
-        Cuisine: {recipe.cuisine}
-      </p>
 
-      <p>
-        Difficulty: {recipe.difficulty}
-      </p>
+        <h2>{recipe.title}</h2>
 
-      <p>
-        Total Time: {totalTime} minutes
-      </p>
+        <p>
+          <strong>Cuisine</strong> {recipe.cuisine}
+        </p>
 
-      <p>
-        Servings: {recipe.servings}
-      </p>
+        <p>
+          <strong>Difficulty</strong>{' '}
+          {difficultyIcon} {recipe.difficulty}
+        </p>
 
-      <div>
-        <Link to={`/recipes/${recipe.id}`}>
-          View Recipe
-        </Link>
+        <p>
+          <strong>Total Time</strong> {totalTime} minutes
+        </p>
 
-        <Button
-          variant={isFavorite ? 'danger' : 'secondary'}
-          onClick={() => onFavoriteToggle(recipe)}
-        >
-          {isFavorite ? '♥ Remove Favorite' : '♡ Add Favorite'}
-        </Button>
+        <p>
+          <strong>Servings</strong> {recipe.servings}
+        </p>
+
+        <div className="recipe-card-actions">
+          <Link
+            to={`/recipes/${recipe.id}`}
+            className="button button-primary"
+          >
+            View Recipe
+          </Link>
+
+          <Button
+            variant={isFavorite ? 'danger' : 'secondary'}
+            onClick={() => onFavoriteToggle(recipe)}
+          >
+            {isFavorite
+              ? '♥ Remove Favorite'
+              : '♡ Add Favorite'}
+          </Button>
+        </div>
       </div>
     </Card>
   );
