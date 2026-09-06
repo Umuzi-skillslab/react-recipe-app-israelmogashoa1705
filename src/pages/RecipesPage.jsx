@@ -77,7 +77,29 @@ const RecipesPage = ({
     setSortOption('title');
   };
 
-  
+  return (
+    <main className="page-container">
+      <header className="page-header">
+        <h1>Discover Recipes</h1>
+
+        <p>
+          Explore delicious recipes for every meal and occasion.
+        </p>
+      </header>
+
+      <SearchBar
+        searchTerm={searchTerm}
+        onSearch={setSearchTerm}
+        placeholder='Search by recipe name...'
+      />
+
+      <RecipeFilter
+        category={selectedCategory}
+        cuisine={selectedCuisine}
+        difficulty={selectedDifficulty}
+        sortOption
+    </main>
+  )
 
 
 
