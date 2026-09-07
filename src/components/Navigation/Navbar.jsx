@@ -1,19 +1,26 @@
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
-const Navbar = () => {
-  return (
-    <nav>
-      <h1>Savora</h1>
+// the mobile navigation menu is currently open.
+const Navbar = ({ favoriteCount = 0 }) => {
+  // Track the open/closed state of the mobile navigation menu.
+  const [menuOpen, setMenuOpen] = useState(false);
 
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/recipes">Recipes</NavLink>
-      <NavLink to="/meal-planner">Meal Planner</NavLink>
-      <NavLink to="/favorites">Favorites</NavLink>
-    </nav>
-  );
-};
+  const Navbar = () => {
+    return (
+      <nav>
+        <h1>Savora</h1>
 
-export default Navbar;
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/recipes">Recipes</NavLink>
+        <NavLink to="/meal-planner">Meal Planner</NavLink>
+        <NavLink to="/favorites">Favorites</NavLink>
+      </nav>
+    );
+  };
+
+  export default Navbar;
 
 
 /*
