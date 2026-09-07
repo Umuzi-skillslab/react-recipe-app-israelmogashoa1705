@@ -188,3 +188,15 @@ const RecipeDetailPage = ({
     </main >
   );
 };
+
+// Define the expected props and their types to catch incorrect data
+// being passed to the component during development.
+RecipeDetailPage.propTypes = {
+  recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  favorites: PropTypes.arrayOf(PropTypes.object),
+  onFavoriteToggle: PropTypes.func.isRequired,
+  onAddToMealPlan: PropTypes.func.isRequired,
+};
+
+// Make the recipe detail page available to other parts of the application.
+export default RecipeDetailPage;
