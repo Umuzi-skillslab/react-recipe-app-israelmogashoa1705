@@ -41,3 +41,12 @@ const MealPlannerPage = ({
     </main>
   );
 };
+
+// Define the required data and callback types expected by the page.
+MealPlannerPage.propTypes = {
+  recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  mealPlan: PropTypes.object.isRequired,
+  onAddMeal: PropTypes.func.isRequired,
+  onRemoveMeal: PropTypes.func.isRequired,
+  onClearWeek: PropTypes.func.isRequired,
+};
