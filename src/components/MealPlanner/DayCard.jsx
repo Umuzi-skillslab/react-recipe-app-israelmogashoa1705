@@ -42,3 +42,50 @@ const DayCard = ({
                                 {mealType.charAt(0).toUpperCase() +
                                     mealType.slice(1)}
                             </h3>
+
+                            {meal ? (
+                                <>
+                                    {/* Show the recipe currently assigned to this meal slot. */}
+                                    <p>{meal.title}</p>
+
+                                    {/* Allow the user to remove the recipe from this slot. */}
+                                    <Button
+                                        variant="danger"
+                                        onClick={() =>
+                                            onRemoveMeal(day, mealType)
+                                        }
+                                    >
+                                        Remove
+                                    </Button>
+                                </>
+                            ) : (
+                                <>
+                                    {/* Show an add button when no recipe is assigned. */}
+                                    <Button
+                                        variant="secondary"
+                                        onClick={() => handleAddMeal(mealType)}
+                                    >
+                                        Add Recipe
+                                    </Button>
+                                </>
+                            )}
+                        </div>
+                    );
+                })}
+            </div>
+        </Card>
+    );
+};
+
+// Define the expected data types and required callbacks
+// used by the DayCard component.
+DayCard.propTypes = {
+  day: PropTypes.string.isRequired,
+  meals: PropTypes.object.isRequired,
+  recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onAddMeal: PropTypes.func.isRequired,
+  onRemoveMeal: PropTypes.func.isRequired,
+};
+
+// Make DayCard available to the meal-plan page and other components.
+export default DayCard;
