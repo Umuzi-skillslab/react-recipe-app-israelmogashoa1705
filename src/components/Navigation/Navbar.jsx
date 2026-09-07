@@ -15,3 +15,74 @@ const Navbar = () => {
 
 export default Navbar;
 
+
+/*
+
+import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
+
+const Navbar = ({ favoriteCount = 0 }) => {
+  // NavLink automatically provides information about whether a route is active.
+  const getNavClass = ({ isActive }) =>
+    isActive ? 'nav-link active' : 'nav-link';
+
+  return (
+    <header className="site-header">
+      <nav className="navbar">
+        <NavLink
+          to="/"
+          className="brand"
+          aria-label="Savora home"
+        >
+          <span className="brand-icon">🍴</span>
+          <span>Savora</span>
+        </NavLink>
+
+        <div className="nav-links">
+          <NavLink to="/" className={getNavClass}>
+            Home
+          </NavLink>
+
+          <NavLink
+            to="/recipes"
+            className={getNavClass}
+          >
+            Recipes
+          </NavLink>
+
+          <NavLink
+            to="/meal-planner"
+            className={getNavClass}
+          >
+            Meal Planner
+          </NavLink>
+
+          <NavLink
+            to="/favorites"
+            className={getNavClass}
+          >
+            Favorites
+            {favoriteCount > 0 && (
+              <span
+                className="favorite-count"
+                aria-label={`${favoriteCount} favorites`}
+              >
+                {favoriteCount}
+              </span>
+            )}
+          </NavLink>
+        </div>
+      </nav>
+    </header>
+  );
+};
+
+Navbar.propTypes = {
+  favoriteCount: PropTypes.number,
+};
+
+export default Navbar;
+
+
+*/
+

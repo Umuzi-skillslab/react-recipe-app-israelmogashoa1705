@@ -1,29 +1,57 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { recipesData } from '../data/recipesData';
 import SearchBar from '../components/UI/SearchBar';
 import RecipeList from '../components/Recipe/RecipeList';
+import RecipeFilter from '../components/Recipe/RecipeFilter';
 import Loading from '../components/UI/Loading';
 
 const RecipesPage = ({
   recipes,
-  favorites,
+  favorites = [],
   onFavoriteToggle,
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedCuisine, setSelectedCuisine] = useState('all');
-  const [selectedDifficulty, setSelectedDifficulty] = useState('all');
+  const [selectedCategory, setSelectedCategory] =
+    useState('all');
+  const [selectedCuisine, setSelectedCuisine] =
+    useState('all');
+  const [selectedDifficulty, setSelectedDifficulty] =
+    useState('all');
   const [sortOption, setSortOption] = useState('title');
   const [isLoading] = useState(false);
 
-  // Filter and sort the recipe data whenever the user's selections change.
+  // Build unique category options from the available recipes.
+  const categories = useMemo(
+    () => [
+      ...new Set(
+        recipes.map((recipe) => recipe.category)
+      ),
+    ],
+    [recipes]
+  );
+
+  // Build unique cuisine options from the available recipes.
+  const cuisines = useMemo(
+    () => [
+      ...new Set(
+        recipes.map((recipe) => recipe.cuisine)
+      ),
+    ],
+    [recipes]
+  );
+
+  // Filter recipes based on search and selected filters,
+  // then sort the matching results.
   const filteredRecipes = useMemo(() => {
     const filtered = recipes.filter((recipe) => {
+      const normalizedSearch = searchTerm
+        .trim()
+        .toLowerCase();
+
       const matchesSearch = recipe.title
         .toLowerCase()
-        .includes(searchTerm.toLowerCase());
+        .includes(normalizedSearch);
 
       const matchesCategory =
         selectedCategory === 'all' ||
@@ -55,7 +83,9 @@ const RecipesPage = ({
       }
 
       if (sortOption === 'difficulty') {
-        return a.difficulty.localeCompare(b.difficulty);
+        return a.difficulty.localeCompare(
+          b.difficulty
+        );
       }
 
       return 0;
@@ -69,6 +99,7 @@ const RecipesPage = ({
     sortOption,
   ]);
 
+  // Reset all search, filter, and sort controls to their defaults.
   const handleClearFilters = () => {
     setSearchTerm('');
     setSelectedCategory('all');
@@ -80,72 +111,84 @@ const RecipesPage = ({
   return (
     <main className="page-container">
       <header className="page-header">
+        <span className="eyebrow">
+          Recipe Collection
+        </span>
+
         <h1>Discover Recipes</h1>
 
         <p>
-          Explore delicious recipes for every meal and occasion.
+          Explore delicious recipes for every meal and
+          occasion.
         </p>
       </header>
 
       <SearchBar
         searchTerm={searchTerm}
         onSearch={setSearchTerm}
-        placeholder='Search by recipe name...'
+        placeholder="Search by recipe name..."
       />
 
       <RecipeFilter
         category={selectedCategory}
         cuisine={selectedCuisine}
         difficulty={selectedDifficulty}
-        sortOption
-    </main>
-  )
-
-
-
-
-
-
-
-
-  const handleFavoriteToggle = (recipe) => {
-    const alreadyFavorite = favorites.some(
-      (favorite) => favorite.id === recipe.id
-    );
-
-    if (alreadyFavorite) {
-      setFavorites(
-        favorites.filter(
-          (favorite) => favorite.id !== recipe.id
-        )
-      );
-    } else {
-      setFavorites([...favorites, recipe]);
-    }
-  };
-
-  const filteredRecipes = recipesData.filter((recipe) =>
-    recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  return (
-    <main>
-      <h1>Recipes</h1>
-
-      <input
-        type="text"
-        placeholder="Search recipes..."
-        value={searchTerm}
-        onChange={(event) => setSearchTerm(event.target.value)}
+        sortOption={sortOption}
+        onCategoryChange={setSelectedCategory}
+        onCuisineChange={setSelectedCuisine}
+        onDifficultyChange={setSelectedDifficulty}
+        onSortChange={setSortOption}
+        onClearFilters={handleClearFilters}
+        categories={categories}
+        cuisines={cuisines}
       />
 
-      <RecipeList
-        recipes={filteredRecipes}
-        favorites={favorites}
-        onFavoriteToggle={handleFavoriteToggle}
-      />
+      <div className="results-summary">
+        <p>
+          Showing{' '}
+          <strong>{filteredRecipes.length}</strong>{' '}
+          of <strong>{recipes.length}</strong> recipes
+        </p>
+
+        {searchTerm && (
+          <p>
+            Searching for:{' '}
+            <strong>"{searchTerm}"</strong>
+          </p>
+        )}
+      </div>
+
+      {isLoading ? (
+        <Loading message="Loading delicious recipes..." />
+      ) : (
+        <RecipeList
+          recipes={filteredRecipes}
+          favorites={favorites}
+          onFavoriteToggle={onFavoriteToggle}
+        />
+      )}
+
+      {filteredRecipes.length === 0 &&
+        !isLoading && (
+          <p className="no-results-message">
+            Try adjusting your search or filters.
+          </p>
+        )}
     </main>
   );
 };
 
+RecipesPage.propTypes = {
+  recipes: PropTypes.arrayOf(
+    PropTypes.object
+  ).isRequired,
+
+  favorites: PropTypes.arrayOf(
+    PropTypes.object
+  ),
+
+  onFavoriteToggle: PropTypes.func.isRequired,
+};
+
 export default RecipesPage;
+
