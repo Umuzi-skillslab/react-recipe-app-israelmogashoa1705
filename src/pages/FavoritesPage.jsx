@@ -34,3 +34,12 @@ const FavoritesPage = ({
           onFavoriteToggle={onFavoriteToggle}
         />
       ) : (
+        // Give the user helpful feedback when they have not saved any recipes yet.
+        <EmptyState
+          title="No favorites yet"
+          message="Browse recipes and save the dishes you love."
+        />
+      )}
+    </main>
+  );
+};
