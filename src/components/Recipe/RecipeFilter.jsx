@@ -116,3 +116,21 @@ const RecipeFilter = ({
         </section>
     );
 };
+
+// PropTypes documents the data and callback functions
+// that RecipeFilter expects from its parent component.
+RecipeFilter.propTypes = {
+    category: PropTypes.string.isRequired,
+    cuisine: PropTypes.string.isRequired,
+    difficulty: PropTypes.string.isRequired,
+    sortOption: PropTypes.string.isRequired,
+    onCategoryChange: PropTypes.func.isRequired,
+    onCuisineChange: PropTypes.func.isRequired,
+    onDifficultyChange: PropTypes.func.isRequired,
+    onSortChange: PropTypes.func.isRequired,
+    onClearFilters: PropTypes.func.isRequired,
+    categories: PropTypes.arrayOf(PropTypes.string),
+    cuisines: PropTypes.arrayOf(PropTypes.string),
+};
+
+export default RecipeFilter;
