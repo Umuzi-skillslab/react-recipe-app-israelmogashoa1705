@@ -26,3 +26,19 @@ const DayCard = ({
             onAddMeal(day, mealType, recipe);
         }
     };
+
+    // Display the day name and all of its meal slots.
+    return (
+        <Card title={day}>
+            <div className="day-meals">
+                {mealTypes.map((mealType) => {
+                    // Get the recipe currently assigned to this meal slot.
+                    const meal = meals[mealType];
+
+                    return (
+                        <div className="meal-slot" key={mealType}>
+                            {/* Display the meal type with its first letter capitalized. */}
+                            <h3>
+                                {mealType.charAt(0).toUpperCase() +
+                                    mealType.slice(1)}
+                            </h3>
