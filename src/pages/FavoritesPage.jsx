@@ -43,3 +43,9 @@ const FavoritesPage = ({
     </main>
   );
 };
+
+// callback is provided by the parent component.
+FavoritesPage.propTypes = {
+  favorites: PropTypes.arrayOf(PropTypes.object),
+  onFavoriteToggle: PropTypes.func.isRequired,
+};
