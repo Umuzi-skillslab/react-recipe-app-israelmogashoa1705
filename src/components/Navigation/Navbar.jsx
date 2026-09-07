@@ -17,20 +17,39 @@ const Navbar = ({ favoriteCount = 0 }) => {
     setMenuOpen(false);
   };
 
+  // Display the application branding, mobile menu toggle,
+  // and navigation links.
+  return (
+    <header className="site-header">
+      <nav className="navbar">
+
+        {/* 
+          Clicking the brand returns the user to the home page
+          and closes the mobile navigation menu.
+        */}
+        <NavLink
+          to="/"
+          className="brand"
+          onClick={closeMenu}
+        >
+          <span className="brand-icon">🍴</span>
+          <span>Savora</span>
+        </NavLink>
+
   const Navbar = () => {
     return (
-      <nav>
-        <h1>Savora</h1>
+        <nav>
+          <h1>Savora</h1>
 
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/recipes">Recipes</NavLink>
-        <NavLink to="/meal-planner">Meal Planner</NavLink>
-        <NavLink to="/favorites">Favorites</NavLink>
-      </nav>
-    );
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/recipes">Recipes</NavLink>
+          <NavLink to="/meal-planner">Meal Planner</NavLink>
+          <NavLink to="/favorites">Favorites</NavLink>
+        </nav>
+        );
   };
 
-  export default Navbar;
+        export default Navbar;
 
 
 /*
