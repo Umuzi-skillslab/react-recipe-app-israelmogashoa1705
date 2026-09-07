@@ -13,7 +13,14 @@ const RecipeDetailPage = ({
   onFavoriteToggle,
   onAddToMealPlan,
 }) => {
+  // Get the recipe ID from the current URL.
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // Convert the URL parameter from a string into a number,
+  // then find the matching recipe from the available recipes.
+  const recipe = useMemo(
+    () => recipes.find((item) => item.id === Number(id)),
+    [recipes, id]
+  );
 
