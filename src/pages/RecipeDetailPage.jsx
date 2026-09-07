@@ -51,3 +51,8 @@ const RecipeDetailPage = ({
   const handleAddBreakfast = () => {
     onAddToMealPlan('monday', 'breakfast', recipe);
   };
+
+  // Add the current recipe to the Monday lunch meal-plan slot.
+  const handleAddLunch = () => {
+    onAddToMealPlan('monday', 'lunch', recipe);
+  };
