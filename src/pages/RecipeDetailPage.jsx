@@ -158,3 +158,19 @@ const RecipeDetailPage = ({
           </ul>
         </Card>
       </section>
+
+      // Render each cooking instruction as a numbered step.
+      <section className="detail-section">
+        <Card title="Instructions">
+          <ol className="instruction-list">
+            {recipe.instructions.map((instruction, index) => (
+              <li key={`${recipe.id}-step-${index}`}>
+                <strong>Step {index + 1}:</strong>{' '}
+                {instruction}
+              </li>
+            ))}
+          </ol>
+        </Card>
+      </section>
+
+      
