@@ -26,13 +26,8 @@ const Loading = ({
   );
 };
 
-
-/*
-
 Loading.propTypes = {
   message: PropTypes.string,
 };
 
 export default Loading;
-
-*/
