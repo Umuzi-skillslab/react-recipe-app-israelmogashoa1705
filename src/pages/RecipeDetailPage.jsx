@@ -24,3 +24,21 @@ const RecipeDetailPage = ({
     [recipes, id]
   );
 
+  
+  // Display a friendly error message and provide a way back to the recipe list
+  // when the requested recipe cannot be found.
+  if (!recipe) {
+    return (
+      <main className="page-container">
+        <Card>
+          <h1>Recipe Not Found</h1>
+          <p>We couldn't find the recipe you're looking for.</p>
+
+          <Button onClick={() => navigate('/recipes')}>
+            Back to Recipes
+          </Button>
+        </Card>
+      </main>
+    );
+  }
+
