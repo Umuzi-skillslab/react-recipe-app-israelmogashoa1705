@@ -84,3 +84,15 @@ const RecipeDetailPage = ({
           {recipe.prepTime + recipe.cookTime} minutes
         </p>
       </header>
+
+      // Display the recipe image and provide controls for favorites
+      // and adding the recipe to the meal plan.
+      <div className="detail-grid">
+        <Card>
+          // commit: feat: display recipe image
+          // Use the recipe image and title to provide meaningful image content and alt text.
+          <img
+            src={recipe.image}
+            alt={recipe.title}
+            className="detail-image"
+          />
