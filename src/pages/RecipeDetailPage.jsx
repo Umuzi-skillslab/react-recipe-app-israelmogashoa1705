@@ -56,3 +56,8 @@ const RecipeDetailPage = ({
   const handleAddLunch = () => {
     onAddToMealPlan('monday', 'lunch', recipe);
   };
+
+  // Display the selected recipe, its actions, nutritional information,
+  // ingredients, instructions, and media content.
+  return (
+    <main className="page-container recipe-detail"></main>
