@@ -24,7 +24,7 @@ const RecipeDetailPage = ({
     [recipes, id]
   );
 
-  
+
   // Display a friendly error message and provide a way back to the recipe list
   // when the requested recipe cannot be found.
   if (!recipe) {
@@ -42,3 +42,7 @@ const RecipeDetailPage = ({
     );
   }
 
+  // Check whether the current recipe already exists in the favorites list.
+  const isFavorite = favorites.some(
+    (favorite) => favorite.id === recipe.id
+  );
