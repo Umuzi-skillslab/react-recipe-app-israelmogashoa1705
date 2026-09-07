@@ -7,15 +7,13 @@ import Card from '../components/UI/Card';
 import VideoPlayer from '../components/Media/VideoPlayer';
 import AudioPlayer from '../components/Media/AudioPlayer';
 
+const RecipeDetailPage = ({
+  recipes,
+  favorites = [],
+  onFavoriteToggle,
+  onAddToMealPlan,
+}) => {
+  const { id } = useParams();
+  const navigate = useNavigate();
 
 
-const RecipeDetailPage = () => {
-  return (
-    <main>
-      <h1>Recipe Details</h1>
-      <p>Recipe information will appear here.</p>
-    </main>
-  );
-};
-
-export default RecipeDetailPage;
