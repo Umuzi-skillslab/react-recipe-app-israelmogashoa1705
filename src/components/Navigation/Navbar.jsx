@@ -12,7 +12,11 @@ const Navbar = ({ favoriteCount = 0 }) => {
   const getNavClass = ({ isActive }) =>
     isActive ? 'nav-link active' : 'nav-link';
 
-  
+  // Close the mobile navigation menu after the user selects a navigation link.
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   const Navbar = () => {
     return (
       <nav>
