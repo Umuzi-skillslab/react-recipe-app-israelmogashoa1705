@@ -173,4 +173,18 @@ const RecipeDetailPage = ({
         </Card>
       </section>
 
-      
+      // Provide additional instructional media for the selected recipe.
+      <section className="detail-section media-grid">
+        <VideoPlayer
+          videoUrl={recipe.videoUrl}
+          title={`${recipe.title} Tutorial`}
+        />
+
+        <AudioPlayer
+          audioUrl={recipe.audioUrl}
+          title="Cooking Tips"
+        />
+      </section>
+    </main >
+  );
+};
