@@ -49,3 +49,6 @@ FavoritesPage.propTypes = {
   favorites: PropTypes.arrayOf(PropTypes.object),
   onFavoriteToggle: PropTypes.func.isRequired,
 };
+
+// Make the page available to the application's routing configuration.
+export default FavoritesPage;
