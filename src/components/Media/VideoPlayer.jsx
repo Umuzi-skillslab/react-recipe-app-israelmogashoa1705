@@ -25,3 +25,9 @@ const VideoPlayer = ({
         </section>
     );
 };
+
+// Validate the video URL and optional title passed to the component.
+VideoPlayer.propTypes = {
+    videoUrl: PropTypes.string.isRequired,
+    title: PropTypes.string,
+};
