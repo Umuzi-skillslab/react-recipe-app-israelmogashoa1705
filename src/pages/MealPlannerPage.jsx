@@ -27,4 +27,17 @@ const MealPlannerPage = ({
         </p>
       </header>
 
-      
+      {/*
+        Pass the recipe data, meal plan, and meal-management
+        callbacks down to the MealPlanner component.
+      */}
+      <MealPlanner
+        recipes={recipes}
+        mealPlan={mealPlan}
+        onAddMeal={onAddMeal}
+        onRemoveMeal={onRemoveMeal}
+        onClearWeek={onClearWeek}
+      />
+    </main>
+  );
+};
