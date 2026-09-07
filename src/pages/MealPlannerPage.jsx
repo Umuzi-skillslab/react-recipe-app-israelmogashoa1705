@@ -50,3 +50,6 @@ MealPlannerPage.propTypes = {
   onRemoveMeal: PropTypes.func.isRequired,
   onClearWeek: PropTypes.func.isRequired,
 };
+
+// Make the page available to the application's routing configuration.
+export default MealPlannerPage;
