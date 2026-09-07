@@ -61,3 +61,13 @@ const RecipeDetailPage = ({
   // ingredients, instructions, and media content.
   return (
     <main className="page-container recipe-detail"></main>
+
+      // Allow users to return to the main recipes list.
+      <Button
+        variant="secondary"
+        onClick={() => navigate('/recipes')}
+      >
+        ← Back to Recipes
+      </Button>
+
+      
