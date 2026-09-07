@@ -145,3 +145,16 @@ const RecipeDetailPage = ({
           </p>
         </Card>
       </div>
+
+      // Render each ingredient as an individual list item.
+      <section className="detail-section">
+        <Card title="Ingredients">
+          <ul className="ingredient-list">
+            {recipe.ingredients.map((ingredient, index) => (
+              <li key={`${recipe.id}-ingredient-${index}`}>
+                {ingredient}
+              </li>
+            ))}
+          </ul>
+        </Card>
+      </section>
