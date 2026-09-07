@@ -46,3 +46,8 @@ const RecipeDetailPage = ({
   const isFavorite = favorites.some(
     (favorite) => favorite.id === recipe.id
   );
+
+  // Add the current recipe to the Monday breakfast meal-plan slot.
+  const handleAddBreakfast = () => {
+    onAddToMealPlan('monday', 'breakfast', recipe);
+  };
