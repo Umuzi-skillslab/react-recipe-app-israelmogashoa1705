@@ -6,7 +6,7 @@ import EmptyState from '../components/UI/EmptyState';
 // Displays the user's saved recipes and handles the case
 // where no recipes have been added to favorites.
 const FavoritesPage = ({
-  favorites =[],
+  favorites = [],
   onFavoriteToggle,
 }) => {
   // Introduce the favorites section and explain what the page contains.
@@ -21,3 +21,16 @@ const FavoritesPage = ({
           Your favorite recipes, ready whenever you are.
         </p>
       </header>
+
+      {/* 
+        Render the saved recipes when the favorites list contains
+        at least one recipe. The same favorites data is passed to
+        RecipeList so the favorite buttons can display the correct state.
+      */}
+      {favorites.length > 0 ? (
+        <RecipeList
+          recipes={favorites}
+          favorites={favorites}
+          onFavoriteToggle={onFavoriteToggle}
+        />
+      ) : (
