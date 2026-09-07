@@ -31,3 +31,6 @@ VideoPlayer.propTypes = {
     videoUrl: PropTypes.string.isRequired,
     title: PropTypes.string,
 };
+
+// Make the reusable video player available to other components.
+export default VideoPlayer;
