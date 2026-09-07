@@ -104,3 +104,15 @@ const RecipeFilter = ({
                     </option>
                 </select>
             </div>
+
+            {/* Button to reset all selected filters */}
+            <button
+                type="button"
+                className="button button-secondary"
+                onClick={onClearFilters}
+            >
+                Clear Filters
+            </button>
+        </section>
+    );
+};
