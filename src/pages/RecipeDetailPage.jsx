@@ -96,3 +96,28 @@ const RecipeDetailPage = ({
             alt={recipe.title}
             className="detail-image"
           />
+
+          // Provide controls for managing favorites and adding the recipe
+          // to specific meal-plan slots.
+          <div className="detail-actions">
+            <Button
+              variant={isFavorite ? 'danger' : 'secondary'}
+              onClick={() => onFavoriteToggle(recipe)}
+            >
+              {isFavorite
+                ? '♥ Remove Favorite'
+                : '♡ Add Favorite'}
+            </Button>
+
+            <Button onClick={handleAddBreakfast}>
+              Add to Monday Breakfast
+            </Button>
+
+            <Button
+              variant="secondary"
+              onClick={handleAddLunch}
+            >
+              Add to Monday Lunch
+            </Button>
+          </div>
+        </Card>
