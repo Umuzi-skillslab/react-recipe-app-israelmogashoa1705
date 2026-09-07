@@ -15,3 +15,13 @@ const VideoPlayer = ({
                 className="media-video"
                 controls
                 width="100%"
+            >
+                {/* Use the supplied video URL as the source for the player. */}
+                <source src={videoUrl} type="video/mp4" />
+
+                {/* Fallback message for browsers that do not support HTML5 video. */}
+                Your browser does not support HTML5 video.
+            </video>
+        </section>
+    );
+};
