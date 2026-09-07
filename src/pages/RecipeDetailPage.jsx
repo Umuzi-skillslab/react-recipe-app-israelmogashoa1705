@@ -70,4 +70,17 @@ const RecipeDetailPage = ({
         ← Back to Recipes
       </Button>
 
-      
+      // Show the recipe category, title, cuisine, difficulty,
+      // and calculated total preparation and cooking time.
+      <header className="page-header">
+        <span className="eyebrow">
+          {recipe.category}
+        </span>
+
+        <h1>{recipe.title}</h1>
+
+        <p>
+          {recipe.cuisine} · {recipe.difficulty} ·{' '}
+          {recipe.prepTime + recipe.cookTime} minutes
+        </p>
+      </header>
