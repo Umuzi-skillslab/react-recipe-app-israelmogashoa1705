@@ -59,10 +59,8 @@ const RecipeDetailPage = ({
 
   // Display the selected recipe, its actions, nutritional information,
   // ingredients, instructions, and media content.
-  return (
-    <main className="page-container recipe-detail"></main>
-
-      // Allow users to return to the main recipes list.
+    return (
+    <main className="page-container recipe-detail">
       <Button
         variant="secondary"
         onClick={() => navigate('/recipes')}
@@ -70,14 +68,13 @@ const RecipeDetailPage = ({
         ← Back to Recipes
       </Button>
 
-      // Show the recipe category, title, cuisine, difficulty,
-      // and calculated total preparation and cooking time.
       <header className="page-header">
         <span className="eyebrow">
           {recipe.category}
         </span>
 
         <h1>{recipe.title}</h1>
+
 
         <p>
           {recipe.cuisine} · {recipe.difficulty} ·{' '}
