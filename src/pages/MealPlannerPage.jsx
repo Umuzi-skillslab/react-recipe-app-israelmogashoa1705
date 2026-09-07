@@ -1,10 +1,11 @@
-const MealPlannerPage = () => {
-  return (
-    <main>
-      <h1>Meal Planner</h1>
-      <p>Plan your meals for the week.</p>
-    </main>
-  );
-};
+import PropTypes from 'prop-types';
 
-export default MealPlannerPage;
+import MealPlanner from '../components/MealPlanner/MealPlanner';
+
+// Provides the page-level container for the weekly meal planner.
+const MealPlannerPage = ({
+  recipes,
+  mealPlan,
+  onAddMeal,
+  onRemoveMeal,
+  onClearWeek,
