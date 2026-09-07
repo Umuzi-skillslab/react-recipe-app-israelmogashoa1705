@@ -121,3 +121,27 @@ const RecipeDetailPage = ({
             </Button>
           </div>
         </Card>
+
+        // Present the recipe's preparation time, cooking time, total time,
+        // and number of servings.
+        <Card title="Recipe Information">
+          <p>
+            <strong>Preparation:</strong>{' '}
+            {recipe.prepTime} minutes
+          </p>
+
+          <p>
+            <strong>Cooking:</strong>{' '}
+            {recipe.cookTime} minutes
+          </p>
+
+          <p>
+            <strong>Total:</strong>{' '}
+            {recipe.prepTime + recipe.cookTime} minutes
+          </p>
+
+          <p>
+            <strong>Servings:</strong> {recipe.servings}
+          </p>
+        </Card>
+      </div>
