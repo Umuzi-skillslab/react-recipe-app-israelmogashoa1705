@@ -36,6 +36,22 @@ const Navbar = ({ favoriteCount = 0 }) => {
           <span>Savora</span>
         </NavLink>
 
+        {/*
+          Toggle the mobile menu between its open and closed states.
+          aria-expanded communicates the current state to assistive technologies.
+        */}
+        <button
+          type="button"
+          className="menu-toggle"
+          onClick={() => setMenuOpen((current) => !current)}
+          aria-label="Toggle navigation"
+          aria-expanded={menuOpen}
+        >
+          ☰
+        </button>
+
+        {/*
+
   const Navbar = () => {
     return (
         <nav>
