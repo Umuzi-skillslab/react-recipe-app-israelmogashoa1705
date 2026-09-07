@@ -7,6 +7,12 @@ const Navbar = ({ favoriteCount = 0 }) => {
   // Track the open/closed state of the mobile navigation menu.
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Return the appropriate CSS classes based on whether
+  // the current navigation link matches the active route.
+  const getNavClass = ({ isActive }) =>
+    isActive ? 'nav-link active' : 'nav-link';
+
+  
   const Navbar = () => {
     return (
       <nav>
