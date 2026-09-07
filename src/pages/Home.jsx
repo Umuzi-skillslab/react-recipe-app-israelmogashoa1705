@@ -1,10 +1,9 @@
-const Home = () => {
-  return (
-    <main>
-      <h1>Welcome to Savora</h1>
-      <p>Discover delicious recipes and plan your meals.</p>
-    </main>
-  );
-};
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-export default Home;
+import Card from '../components/UI/Card';
+import AudioPlayer from '../components/Media/AudioPlayer';
+
+const Home = ({ recipes = [] }) => {
+  // Limit the homepage to the first three recipes for the featured section.
+  const featuredRecipes = recipes.slice(0, 3);
