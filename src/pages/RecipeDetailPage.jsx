@@ -17,6 +17,12 @@ const RecipeDetailPage = ({
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // Store the selected day and meal for the weekly meal planner.
+  const [selectedDay, setSelectedDay] =
+    useState('monday');
+  const [selectedMeal, setSelectedMeal] =
+    useState('breakfast');
+
   // Convert the URL parameter from a string into a number, then find the matching recipe from the available recipes
   const recipe = useMemo(
     () => recipes.find((item) => item.id === Number(id)),
@@ -56,7 +62,7 @@ const RecipeDetailPage = ({
   };
 
   // Display the selected recipe, its actions, nutritional information, ingredients, instructions, and media content.
-    return (
+  return (
     <main className="page-container recipe-detail">
       <Button
         variant="secondary"
