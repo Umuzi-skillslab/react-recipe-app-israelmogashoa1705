@@ -16,7 +16,7 @@ const VideoPlayer = ({
     const handlePause = () => {
         setIsPlaying(false);
     };
-    
+
     return (
         <section className="media-card">
             <h2>{title}</h2>
@@ -25,13 +25,24 @@ const VideoPlayer = ({
                 className="media-video"
                 controls
                 width="100%"
+                onPlay={handlePlay}
+                onPause={handlePause}
             >
                 {/* Use the supplied video URL as the source for the player. */}
-                <source src={videoUrl} type="video/mp4" />
+                <source
+                    src={videoUrl}
+                    type="video/mp4"
+                />
 
                 {/* Fallback message for browsers that do not support HTML5 video. */}
                 Your browser does not support HTML5 video.
             </video>
+
+            <p className="media-status">
+              {isPlaying
+                ? '▶ Video playing'
+                : '⏸ Video paused'}
+            </p>
         </section>
     );
 };
