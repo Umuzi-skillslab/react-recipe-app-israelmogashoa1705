@@ -34,189 +34,207 @@ const RecipesPage = ({ recipes }) => {
     return () => clearTimeout(timer);
   }, [recipes]);
 
-    const RecipesPage = ({
-      recipes,
-      favorites = [],
-      onFavoriteToggle,
-    }) => {
-      const [searchTerm, setSearchTerm] = useState('');
-      const [selectedCategory, setSelectedCategory] =
-        useState('all');
-      const [selectedCuisine, setSelectedCuisine] =
-        useState('all');
-      const [selectedDifficulty, setSelectedDifficulty] =
-        useState('all');
-      const [sortOption, setSortOption] = useState('title');
-      const [isLoading] = useState(false);
+  if (isLoading) {
+    return (
+      <div className="recipes-page">
+        <h1>Recipes</h1>
+        <p>Loading recipes...</p>
+      </div>
+    );
+  }
 
-      // Build unique category options from the available recipes.
-      const categories = useMemo(
-        () => [
-          ...new Set(
-            recipes.map((recipe) => recipe.category)
-          ),
-        ],
-        [recipes]
-      );
+  if (error) {
+    return (
+      <div className="recipes-page">
+        <h1>Recipes</h1>
+        <p className="error-message">{error}</p>
+      </div>
+    );
+  }
 
-      // Build unique cuisine options from the available recipes.
-      const cuisines = useMemo(
-        () => [
-          ...new Set(
-            recipes.map((recipe) => recipe.cuisine)
-          ),
-        ],
-        [recipes]
-      );
+  const RecipesPage = ({
+    recipes,
+    favorites = [],
+    onFavoriteToggle,
+  }) => {
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCategory, setSelectedCategory] =
+      useState('all');
+    const [selectedCuisine, setSelectedCuisine] =
+      useState('all');
+    const [selectedDifficulty, setSelectedDifficulty] =
+      useState('all');
+    const [sortOption, setSortOption] = useState('title');
+    const [isLoading] = useState(false);
 
-      // Filter recipes based on search and selected filters,
-      // then sort the matching results.
-      const filteredRecipes = useMemo(() => {
-        const filtered = recipes.filter((recipe) => {
-          const normalizedSearch = searchTerm
-            .trim()
-            .toLowerCase();
+    // Build unique category options from the available recipes.
+    const categories = useMemo(
+      () => [
+        ...new Set(
+          recipes.map((recipe) => recipe.category)
+        ),
+      ],
+      [recipes]
+    );
 
-          const matchesSearch = recipe.title
-            .toLowerCase()
-            .includes(normalizedSearch);
+    // Build unique cuisine options from the available recipes.
+    const cuisines = useMemo(
+      () => [
+        ...new Set(
+          recipes.map((recipe) => recipe.cuisine)
+        ),
+      ],
+      [recipes]
+    );
 
-          const matchesCategory =
-            selectedCategory === 'all' ||
-            recipe.category === selectedCategory;
+    // Filter recipes based on search and selected filters,
+    // then sort the matching results.
+    const filteredRecipes = useMemo(() => {
+      const filtered = recipes.filter((recipe) => {
+        const normalizedSearch = searchTerm
+          .trim()
+          .toLowerCase();
 
-          const matchesCuisine =
-            selectedCuisine === 'all' ||
-            recipe.cuisine === selectedCuisine;
+        const matchesSearch = recipe.title
+          .toLowerCase()
+          .includes(normalizedSearch);
 
-          const matchesDifficulty =
-            selectedDifficulty === 'all' ||
-            recipe.difficulty === selectedDifficulty;
+        const matchesCategory =
+          selectedCategory === 'all' ||
+          recipe.category === selectedCategory;
 
-          return (
-            matchesSearch &&
-            matchesCategory &&
-            matchesCuisine &&
-            matchesDifficulty
+        const matchesCuisine =
+          selectedCuisine === 'all' ||
+          recipe.cuisine === selectedCuisine;
+
+        const matchesDifficulty =
+          selectedDifficulty === 'all' ||
+          recipe.difficulty === selectedDifficulty;
+
+        return (
+          matchesSearch &&
+          matchesCategory &&
+          matchesCuisine &&
+          matchesDifficulty
+        );
+      });
+
+      return [...filtered].sort((a, b) => {
+        if (sortOption === 'title') {
+          return a.title.localeCompare(b.title);
+        }
+
+        if (sortOption === 'cookTime') {
+          return a.cookTime - b.cookTime;
+        }
+
+        if (sortOption === 'difficulty') {
+          return a.difficulty.localeCompare(
+            b.difficulty
           );
-        });
+        }
 
-        return [...filtered].sort((a, b) => {
-          if (sortOption === 'title') {
-            return a.title.localeCompare(b.title);
-          }
+        return 0;
+      });
+    }, [
+      recipes,
+      searchTerm,
+      selectedCategory,
+      selectedCuisine,
+      selectedDifficulty,
+      sortOption,
+    ]);
 
-          if (sortOption === 'cookTime') {
-            return a.cookTime - b.cookTime;
-          }
+    // Reset all search, filter, and sort controls to their defaults.
+    const handleClearFilters = () => {
+      setSearchTerm('');
+      setSelectedCategory('all');
+      setSelectedCuisine('all');
+      setSelectedDifficulty('all');
+      setSortOption('title');
+    };
 
-          if (sortOption === 'difficulty') {
-            return a.difficulty.localeCompare(
-              b.difficulty
-            );
-          }
+    return (
+      <main className="page-container">
+        <header className="page-header">
+          <span className="eyebrow">
+            Recipe Collection
+          </span>
 
-          return 0;
-        });
-      }, [
-        recipes,
-        searchTerm,
-        selectedCategory,
-        selectedCuisine,
-        selectedDifficulty,
-        sortOption,
-      ]);
+          <h1>Discover Recipes</h1>
 
-      // Reset all search, filter, and sort controls to their defaults.
-      const handleClearFilters = () => {
-        setSearchTerm('');
-        setSelectedCategory('all');
-        setSelectedCuisine('all');
-        setSelectedDifficulty('all');
-        setSortOption('title');
-      };
+          <p>
+            Explore delicious recipes for every meal and
+            occasion.
+          </p>
+        </header>
 
-      return (
-        <main className="page-container">
-          <header className="page-header">
-            <span className="eyebrow">
-              Recipe Collection
-            </span>
+        <SearchBar
+          searchTerm={searchTerm}
+          onSearch={setSearchTerm}
+          placeholder="Search by recipe name..."
+        />
 
-            <h1>Discover Recipes</h1>
+        <RecipeFilter
+          category={selectedCategory}
+          cuisine={selectedCuisine}
+          difficulty={selectedDifficulty}
+          sortOption={sortOption}
+          onCategoryChange={setSelectedCategory}
+          onCuisineChange={setSelectedCuisine}
+          onDifficultyChange={setSelectedDifficulty}
+          onSortChange={setSortOption}
+          onClearFilters={handleClearFilters}
+          categories={categories}
+          cuisines={cuisines}
+        />
 
+        <div className="results-summary">
+          <p>
+            Showing{' '}
+            <strong>{filteredRecipes.length}</strong>{' '}
+            of <strong>{recipes.length}</strong> recipes
+          </p>
+
+          {searchTerm && (
             <p>
-              Explore delicious recipes for every meal and
-              occasion.
+              Searching for:{' '}
+              <strong>"{searchTerm}"</strong>
             </p>
-          </header>
-
-          <SearchBar
-            searchTerm={searchTerm}
-            onSearch={setSearchTerm}
-            placeholder="Search by recipe name..."
-          />
-
-          <RecipeFilter
-            category={selectedCategory}
-            cuisine={selectedCuisine}
-            difficulty={selectedDifficulty}
-            sortOption={sortOption}
-            onCategoryChange={setSelectedCategory}
-            onCuisineChange={setSelectedCuisine}
-            onDifficultyChange={setSelectedDifficulty}
-            onSortChange={setSortOption}
-            onClearFilters={handleClearFilters}
-            categories={categories}
-            cuisines={cuisines}
-          />
-
-          <div className="results-summary">
-            <p>
-              Showing{' '}
-              <strong>{filteredRecipes.length}</strong>{' '}
-              of <strong>{recipes.length}</strong> recipes
-            </p>
-
-            {searchTerm && (
-              <p>
-                Searching for:{' '}
-                <strong>"{searchTerm}"</strong>
-              </p>
-            )}
-          </div>
-
-          {isLoading ? (
-            <Loading message="Loading delicious recipes..." />
-          ) : (
-            <RecipeList
-              recipes={filteredRecipes}
-              favorites={favorites}
-              onFavoriteToggle={onFavoriteToggle}
-            />
           )}
+        </div>
 
-          {filteredRecipes.length === 0 &&
-            !isLoading && (
-              <p className="no-results-message">
-                Try adjusting your search or filters.
-              </p>
-            )}
-        </main>
-      );
-    };
+        {isLoading ? (
+          <Loading message="Loading delicious recipes..." />
+        ) : (
+          <RecipeList
+            recipes={filteredRecipes}
+            favorites={favorites}
+            onFavoriteToggle={onFavoriteToggle}
+          />
+        )}
 
-    RecipesPage.propTypes = {
-      recipes: PropTypes.arrayOf(
-        PropTypes.object
-      ).isRequired,
+        {filteredRecipes.length === 0 &&
+          !isLoading && (
+            <p className="no-results-message">
+              Try adjusting your search or filters.
+            </p>
+          )}
+      </main>
+    );
+  };
 
-      favorites: PropTypes.arrayOf(
-        PropTypes.object
-      ),
+  RecipesPage.propTypes = {
+    recipes: PropTypes.arrayOf(
+      PropTypes.object
+    ).isRequired,
 
-      onFavoriteToggle: PropTypes.func.isRequired,
-    };
+    favorites: PropTypes.arrayOf(
+      PropTypes.object
+    ),
 
-    export default RecipesPage;
+    onFavoriteToggle: PropTypes.func.isRequired,
+  };
+
+  export default RecipesPage;
 
