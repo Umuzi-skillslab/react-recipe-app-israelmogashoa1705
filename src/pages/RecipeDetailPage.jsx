@@ -60,11 +60,6 @@ const RecipeDetailPage = ({
     );
   };
 
-  // Add the current recipe to the Monday lunch meal-plan slot.
-  const handleAddLunch = () => {
-    onAddToMealPlan('monday', 'lunch', recipe);
-  };
-
   // Display the selected recipe, its actions, nutritional information, ingredients, instructions, and media content.
   return (
     <main className="page-container recipe-detail">
@@ -108,6 +103,50 @@ const RecipeDetailPage = ({
                 ? '♥ Remove Favorite'
                 : '♡ Add Favorite'}
             </Button>
+
+            <label htmlFor="meal-plan-day">
+              Day
+            </label>
+
+            <select
+              id="meal-plan-day"
+              value={selectedDay}
+              onChange={(event) =>
+                setSelectedDay(event.target.value)
+              }
+            >
+              <option value="monday">
+                Monday
+              </option>
+
+              <option value="tuesday">
+                Tuesday
+              </option>
+
+              <option value="wednesday">
+                Wednesday
+              </option>
+
+              <option value="thursday">
+                Thursday
+              </option>
+
+              <option value="friday">
+                Friday
+              </option>
+
+              <option value="saturday">
+                Saturday
+              </option>
+
+              <option value="sunday">
+                Sunday
+              </option>
+            </select>
+
+            <label htmlFor="meal-plan-meal">
+              Meal
+            </label>
 
             <Button onClick={handleAddBreakfast}>
               Add to Monday Breakfast
