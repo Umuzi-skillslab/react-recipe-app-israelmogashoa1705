@@ -82,3 +82,20 @@ const Home = ({ recipes = [] }) => {
         </div>
       </section>
 
+      {/* Audio guide satisfies the cooking tips multimedia requirement. */}
+      <section className="home-section">
+        <AudioPlayer
+          audioUrl="/assets/audio/breakfast-tips.mp3"
+          title="Cooking Tips Audio Guide"
+        />
+      </section>
+    </main>
+  );
+};
+
+Home.propTypes = {
+  recipes: PropTypes.arrayOf(PropTypes.object),
+};
+
+export default Home;
+
