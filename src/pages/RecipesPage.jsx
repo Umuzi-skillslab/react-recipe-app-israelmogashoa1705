@@ -75,9 +75,14 @@ const RecipesPage = ({
         .trim()
         .toLowerCase();
 
-      const matchesSearch = recipe.title
-        .toLowerCase()
-        .includes(normalizedSearch);
+      const matchesSearch =
+        recipe.title.toLowerCase().includes(normalizedSearch) ||
+        recipe.ingredients.some((ingredient) =>
+          ingredient
+            .toLowerCase()
+            .includes(normalizedSearch)
+        );
+
 
       const matchesCategory =
         selectedCategory === 'all' ||
