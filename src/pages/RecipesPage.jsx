@@ -16,6 +16,24 @@ const RecipesPage = ({ recipes }) => {
     setIsLoading(true);
     setError('');
 
+    const timer = setTimeout(() => {
+      try {
+        if (!recipes || recipes.length === 0) {
+          throw new Error(
+            'No recipe data is currently available.'
+          );
+        }
+
+        setIsLoading(false);
+      } catch (loadingError) {
+        setError(loadingError.message);
+        setIsLoading(false);
+      }
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [recipes]);
+
     const RecipesPage = ({
       recipes,
       favorites = [],
