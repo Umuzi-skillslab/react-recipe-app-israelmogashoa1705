@@ -6,7 +6,17 @@ const VideoPlayer = ({
     videoUrl,
     title = 'Cooking Tutorial',
 }) => {
-    // Display the video title and an HTML5 video player with playback controls.
+    // Track whether the video has been started by the user.
+    const [isPlaying, setIsPlaying] = useState(false);
+
+    const handlePlay = () => {
+        setIsPlaying(true);
+    }
+
+    const handlePause = () => {
+        setIsPlaying(false);
+    };
+    
     return (
         <section className="media-card">
             <h2>{title}</h2>
