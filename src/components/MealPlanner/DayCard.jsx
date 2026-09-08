@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import './App.css';
+
 
 import Button from '../UI/Button';
 import Card from '../UI/Card';

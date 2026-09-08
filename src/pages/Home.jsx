@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import './App.css';
 
 import Card from '../components/UI/Card';
 import AudioPlayer from '../components/Media/AudioPlayer';

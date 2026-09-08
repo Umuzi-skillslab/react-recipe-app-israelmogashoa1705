@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import './App.css';
 
 import RecipeCard from './RecipeCard';
 import EmptyState from '../UI/EmptyState';
