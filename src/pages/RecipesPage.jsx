@@ -110,7 +110,11 @@ const RecipesPage = ({
       }
 
       if (sortOption === 'cookTime') {
-        return a.cookTime - b.cookTime;
+        return (
+          a.prepTime +
+          a.cookTime -
+          (b.prepTime + b.cookTime)
+        );
       }
 
       if (sortOption === 'difficulty') {
