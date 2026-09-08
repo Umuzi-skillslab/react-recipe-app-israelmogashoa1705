@@ -2,27 +2,22 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
-// the mobile navigation menu is currently open.
 const Navbar = ({ favoriteCount = 0 }) => {
-  // Track the open/closed state of the mobile navigation menu.
+  // Track whether the mobile navigation menu is open.
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Return the appropriate CSS classes based on whether
-  // the current navigation link matches the active route.
+  // Return the appropriate CSS classes for active navigation links.
   const getNavClass = ({ isActive }) =>
     isActive ? 'nav-link active' : 'nav-link';
 
-  // Close the mobile navigation menu after the user selects a navigation link.
+  // Close the mobile navigation menu after selecting a link.
   const closeMenu = () => {
     setMenuOpen(false);
   };
 
-  // Display the application branding, mobile menu toggle,
-  // and navigation links.
   return (
     <header className="site-header">
-      <header className="navbar">
-
+      <nav className="navbar">
         {/*
           Clicking the brand returns the user to the home page
           and closes the mobile navigation menu.
@@ -37,7 +32,7 @@ const Navbar = ({ favoriteCount = 0 }) => {
         </NavLink>
 
         {/*
-          Toggle the mobile menu between its open and closed states.
+          Toggle the mobile menu between open and closed states.
           aria-expanded communicates the current state to assistive technologies.
         */}
         <button
@@ -50,8 +45,9 @@ const Navbar = ({ favoriteCount = 0 }) => {
           ☰
         </button>
 
-        // Apply an open-menu class when the mobile navigation is expanded.
-
+        {/*
+          Apply an open-menu class when the mobile navigation is expanded.
+        */}
         <div
           className={`nav-links ${menuOpen ? 'nav-links-open' : ''
             }`}
@@ -90,8 +86,8 @@ const Navbar = ({ favoriteCount = 0 }) => {
           </NavLink>
 
           {/*
-            Provide navigation to the saved recipes page and
-            display the number of saved recipes when applicable.
+            Provide navigation to the saved recipes page
+            and display the number of saved recipes.
           */}
           <NavLink
             to="/favorites"
@@ -116,10 +112,9 @@ const Navbar = ({ favoriteCount = 0 }) => {
   );
 };
 
-// Ensure the favorite count is received as a number when provided.
+// Ensure favoriteCount is received as a number when provided.
 Navbar.propTypes = {
   favoriteCount: PropTypes.number,
 };
 
-// Make the navigation component available to the application layout.
 export default Navbar;
