@@ -1,6 +1,4 @@
 import PropTypes from 'prop-types';
-import './App.css';
-
 
 import RecipeList from '../components/Recipe/RecipeList';
 import EmptyState from '../components/UI/EmptyState';
