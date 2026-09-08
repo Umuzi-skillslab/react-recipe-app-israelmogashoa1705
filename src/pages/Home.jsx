@@ -8,7 +8,7 @@ const Home = ({ recipes = [] }) => {
   // Limit the homepage to the first three recipes for the featured section.
   const featuredRecipes = recipes.slice(0, 3);
 
-    return (
+  return (
     <main className="page-container">
       {/* Hero section introduces Savora and directs users to the recipe collection. */}
       <section className="hero">
@@ -36,6 +36,49 @@ const Home = ({ recipes = [] }) => {
 
         <div className="hero-emoji" style={{ fontSize: '7rem' }}>
           🍝
+        </div>
+      </section>
+
+      {/* Featured recipes demonstrate parent-to-child data flow. */}
+      <section className="home-section">
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow">Featured</span>
+            <h2>Recipes worth trying</h2>
+          </div>
+
+          <Link
+            to="/recipes"
+            className="text-link"
+          >
+            View all →
+          </Link>
+        </div>
+
+        <div className="featured-grid">
+          {featuredRecipes.map((recipe) => (
+            <Card
+              key={recipe.id}
+              title={recipe.title}
+              className="featured-card"
+            >
+              <p>
+                {recipe.cuisine} · {recipe.difficulty}
+              </p>
+
+              <p>
+                Ready in{' '}
+                {recipe.prepTime + recipe.cookTime} minutes
+              </p>
+
+              <Link
+                to={`/recipes/${recipe.id}`}
+                className="button button-secondary"
+              >
+                View Recipe
+              </Link>
+            </Card>
+          ))}
         </div>
       </section>
 
