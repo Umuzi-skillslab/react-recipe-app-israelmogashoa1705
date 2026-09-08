@@ -148,6 +148,26 @@ const RecipeDetailPage = ({
               Meal
             </label>
 
+            <select
+              id="meal-plan-meal"
+              value={selectedMeal}
+              onChange={(event) =>
+                setSelectedMeal(event.target.value)
+              }
+            >
+              <option value="breakfast">
+                Breakfast
+              </option>
+
+              <option value="lunch">
+                Lunch
+              </option>
+
+              <option value="dinner">
+                Dinner
+              </option>
+            </select>
+
             <Button onClick={handleAddBreakfast}>
               Add to Monday Breakfast
             </Button>
