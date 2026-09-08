@@ -240,71 +240,8 @@ const RecipeDetailPage = ({
         </Card>
       </section>
 
-
-      <Button onClick={handleAddBreakfast}>
-        Add to Monday Breakfast
-      </Button>
-
-      <Button
-        variant="secondary"
-        onClick={handleAddLunch}
-      >
-        Add to Monday Lunch
-      </Button>
-    </div>
-        </Card >
-
-  // Present the recipe's preparation time, cooking time, total time, and number of servings.
-  <Card title="Recipe Information">
-    <p>
-      <strong>Preparation:</strong>{' '}
-      {recipe.prepTime} minutes
-    </p>
-
-    <p>
-      <strong>Cooking:</strong>{' '}
-      {recipe.cookTime} minutes
-    </p>
-
-    <p>
-      <strong>Total:</strong>{' '}
-      {recipe.prepTime + recipe.cookTime} minutes
-    </p>
-
-    <p>
-      <strong>Servings:</strong> {recipe.servings}
-    </p>
-  </Card>
-      </div >
-
-      // Render each ingredient as an individual list item.
-      <section className="detail-section">
-        <Card title="Ingredients">
-          <ul className="ingredient-list">
-            {recipe.ingredients.map((ingredient, index) => (
-              <li key={`${recipe.id}-ingredient-${index}`}>
-                {ingredient}
-              </li>
-            ))}
-          </ul>
-        </Card>
-      </section>
-
-      // Render each cooking instruction as a numbered step.
-      <section className="detail-section">
-        <Card title="Instructions">
-          <ol className="instruction-list">
-            {recipe.instructions.map((instruction, index) => (
-              <li key={`${recipe.id}-step-${index}`}>
-                <strong>Step {index + 1}:</strong>{' '}
-                {instruction}
-              </li>
-            ))}
-          </ol>
-        </Card>
-      </section>
-
-      // Provide additional instructional media for the selected recipe.
+      {/* Provide additional instructional media
+          for the selected recipe. */}
       <section className="detail-section media-grid">
         <VideoPlayer
           videoUrl={recipe.videoUrl}
@@ -316,17 +253,26 @@ const RecipeDetailPage = ({
           title="Cooking Tips"
         />
       </section>
-    </main >
+    </main>
   );
 };
 
-// Define the expected props and their types to catch incorrect data, being passed to the component during development.
+// Define the expected props and their types to catch
+// incorrect data being passed to the component.
 RecipeDetailPage.propTypes = {
-  recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
-  favorites: PropTypes.arrayOf(PropTypes.object),
+  recipes: PropTypes.arrayOf(
+    PropTypes.object
+  ).isRequired,
+
+  favorites: PropTypes.arrayOf(
+    PropTypes.object
+  ),
+
   onFavoriteToggle: PropTypes.func.isRequired,
+
   onAddToMealPlan: PropTypes.func.isRequired,
 };
 
-// Make the recipe detail page available to other parts of the application.
+// Make the recipe detail page available to other
+// parts of the application.
 export default RecipeDetailPage;
