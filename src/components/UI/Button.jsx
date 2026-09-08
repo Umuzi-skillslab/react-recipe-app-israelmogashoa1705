@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import styles from './UI.module.css';
 
 const Button = ({
   children,
