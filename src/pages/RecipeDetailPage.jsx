@@ -168,20 +168,16 @@ const RecipeDetailPage = ({
               </option>
             </select>
 
-            <Button onClick={handleAddBreakfast}>
-              Add to Monday Breakfast
-            </Button>
-
             <Button
-              variant="secondary"
-              onClick={handleAddLunch}
+              onClick={handleAddToMealPlan}
             >
-              Add to Monday Lunch
+              Add to Meal Plan
             </Button>
           </div>
         </Card>
 
-        // Present the recipe's preparation time, cooking time, total time, and number of servings.
+        {/* Present the recipe's preparation time,
+            cooking time, total time, and number of servings. */}
         <Card title="Recipe Information">
           <p>
             <strong>Preparation:</strong>{' '}
@@ -199,10 +195,48 @@ const RecipeDetailPage = ({
           </p>
 
           <p>
-            <strong>Servings:</strong> {recipe.servings}
+            <strong>Servings:</strong>{' '}
+            {recipe.servings}
           </p>
         </Card>
       </div>
+
+
+      <Button onClick={handleAddBreakfast}>
+        Add to Monday Breakfast
+      </Button>
+
+      <Button
+        variant="secondary"
+        onClick={handleAddLunch}
+      >
+        Add to Monday Lunch
+      </Button>
+    </div>
+        </Card >
+
+  // Present the recipe's preparation time, cooking time, total time, and number of servings.
+  <Card title="Recipe Information">
+    <p>
+      <strong>Preparation:</strong>{' '}
+      {recipe.prepTime} minutes
+    </p>
+
+    <p>
+      <strong>Cooking:</strong>{' '}
+      {recipe.cookTime} minutes
+    </p>
+
+    <p>
+      <strong>Total:</strong>{' '}
+      {recipe.prepTime + recipe.cookTime} minutes
+    </p>
+
+    <p>
+      <strong>Servings:</strong> {recipe.servings}
+    </p>
+  </Card>
+      </div >
 
       // Render each ingredient as an individual list item.
       <section className="detail-section">
