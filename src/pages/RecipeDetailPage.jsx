@@ -17,16 +17,14 @@ const RecipeDetailPage = ({
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Convert the URL parameter from a string into a number,
-  // then find the matching recipe from the available recipes.
+  // Convert the URL parameter from a string into a number, then find the matching recipe from the available recipes
   const recipe = useMemo(
     () => recipes.find((item) => item.id === Number(id)),
     [recipes, id]
   );
 
 
-  // Display a friendly error message and provide a way back to the recipe list
-  // when the requested recipe cannot be found.
+  // Display a friendly error message and provide a way back to the recipe list when the requested recipe cannot be found.
   if (!recipe) {
     return (
       <main className="page-container">
@@ -57,8 +55,7 @@ const RecipeDetailPage = ({
     onAddToMealPlan('monday', 'lunch', recipe);
   };
 
-  // Display the selected recipe, its actions, nutritional information,
-  // ingredients, instructions, and media content.
+  // Display the selected recipe, its actions, nutritional information, ingredients, instructions, and media content.
     return (
     <main className="page-container recipe-detail">
       <Button
@@ -82,20 +79,16 @@ const RecipeDetailPage = ({
         </p>
       </header>
 
-      // Display the recipe image and provide controls for favorites
-      // and adding the recipe to the meal plan.
+      // Display the recipe image and provide controls for favorites, and adding the recipe to the meal plan.
       <div className="detail-grid">
         <Card>
-          // commit: feat: display recipe image
-          // Use the recipe image and title to provide meaningful image content and alt text.
           <img
             src={recipe.image}
             alt={recipe.title}
             className="detail-image"
           />
 
-          // Provide controls for managing favorites and adding the recipe
-          // to specific meal-plan slots.
+          // Provide controls for managing favorites and adding the recipe, to specific meal-plan slots.
           <div className="detail-actions">
             <Button
               variant={isFavorite ? 'danger' : 'secondary'}
@@ -119,8 +112,7 @@ const RecipeDetailPage = ({
           </div>
         </Card>
 
-        // Present the recipe's preparation time, cooking time, total time,
-        // and number of servings.
+        // Present the recipe's preparation time, cooking time, total time, and number of servings.
         <Card title="Recipe Information">
           <p>
             <strong>Preparation:</strong>{' '}
@@ -186,8 +178,7 @@ const RecipeDetailPage = ({
   );
 };
 
-// Define the expected props and their types to catch incorrect data
-// being passed to the component during development.
+// Define the expected props and their types to catch incorrect data, being passed to the component during development.
 RecipeDetailPage.propTypes = {
   recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
   favorites: PropTypes.arrayOf(PropTypes.object),
