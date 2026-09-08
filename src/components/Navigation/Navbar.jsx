@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import './App.css';
 
 
 const Navbar = ({ favoriteCount = 0 }) => {

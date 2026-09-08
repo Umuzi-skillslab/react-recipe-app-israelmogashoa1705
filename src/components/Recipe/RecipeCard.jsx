@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Button from '../UI/Button';
 import Card from '../UI/Card';
-import './App.css';
 
 
 const RecipeCard = ({

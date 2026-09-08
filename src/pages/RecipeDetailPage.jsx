@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import './App.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 

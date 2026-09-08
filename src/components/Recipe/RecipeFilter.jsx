@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import './App.css';
 
 // RecipeFilter displays the available recipe filters and
 // sends the selected values back to the parent component.
