@@ -43,7 +43,7 @@ const Navbar = ({ favoriteCount = 0 }) => {
           aria-label="Toggle navigation"
           aria-expanded={menuOpen}
         >
-          ☰
+          {menuOpen ? '✕' : '☰'}
         </button>
 
         {/*
@@ -56,11 +56,7 @@ const Navbar = ({ favoriteCount = 0 }) => {
           {/*
             Provide navigation to the application's home page.
           */}
-          <NavLink
-            to="/"
-            className={getNavClass}
-            onClick={closeMenu}
-          >
+          <NavLink to="/" className={getNavClass} onClick={closeMenu} end>
             Home
           </NavLink>
 
