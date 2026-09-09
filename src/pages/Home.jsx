@@ -33,8 +33,8 @@ const Home = ({ recipes = [] }) => {
           </h1>
 
           <p>
-            Discover recipes, save your favorites, and
-            build a weekly meal plan with Savora.
+            Browse {totalRecipes} recipes, save your favourites, and
+            build a full weekly meal plan — all in one place.
           </p>
 
           <Link
@@ -45,10 +45,28 @@ const Home = ({ recipes = [] }) => {
           </Link>
         </div>
 
-        <div className="hero-emoji" style={{ fontSize: '7rem' }}>
+        <div className="hero-emoji" style={{ fontSize: '6rem' }}>
           🍝
         </div>
       </section>
+
+            {/* ---- Statistics strip ---- */}
+      <div className="stats-strip">
+        <div className="stat-card">
+          <span className="stat-number">{totalRecipes}</span>
+          <p className="stat-label">Recipes available</p>
+        </div>
+
+        <div className="stat-card">
+          <span className="stat-number">{breakfastCount}</span>
+          <p className="stat-label">Breakfast options</p>
+        </div>
+
+        <div className="stat-card">
+          <span className="stat-number">{dinnerCount}</span>
+          <p className="stat-label">Dinner ideas</p>
+        </div>
+      </div>
 
       {/* Featured recipes demonstrate parent-to-child data flow. */}
       <section className="home-section">
