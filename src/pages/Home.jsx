@@ -103,6 +103,7 @@ const Home = ({ recipes = [] }) => {
               <Link
                 to={`/recipes/${recipe.id}`}
                 className="button button-secondary"
+                style={{ marginTop: '8px' }}
               >
                 View Recipe
               </Link>
