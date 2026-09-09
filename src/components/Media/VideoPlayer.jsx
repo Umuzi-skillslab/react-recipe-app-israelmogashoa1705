@@ -28,6 +28,7 @@ const VideoPlayer = ({
                 width="100%"
                 onPlay={handlePlay}
                 onPause={handlePause}
+                 onEnded={() => setIsPlaying(false)}
             >
                 {/* Use the supplied video URL as the source for the player. */}
                 <source
