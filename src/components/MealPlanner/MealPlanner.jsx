@@ -22,6 +22,14 @@ const MealPlanner = ({
     'sunday',
   ];
 
+  // Count how many meal slots are currently filled so the summary is accurate.
+  const filledSlots = daysOfWeek.reduce((total, day) => {
+    const dayCounts = Object.values(mealPlan[day]).filter(Boolean).length;
+    return total + dayCounts;
+  }, 0);
+
+  const totalSlots = daysOfWeek.length * 3;
+
   return (
     <section className="meal-planner">
       <div className="planner-header">
