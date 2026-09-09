@@ -34,10 +34,16 @@ const MealPlanner = ({
     <section className="meal-planner">
       <div className="planner-header">
         <div>
-          <span className="eyebrow">
-            Your Week
-          </span>
+          <span className="eyebrow">Your Week</span>
+          <h2 style={{ margin: '4px 0 0' }}>Weekly Meal Plan</h2>
+          
+          {/* Summary tells the user how full their week is. */}
+          <p style={{ color: 'var(--text-light)', margin: '4px 0 0' }}>
+            {filledSlots} of {totalSlots} meals planned
+          </p>
+        </div>
 
+        <div>
           <h2>Weekly Meal Plan</h2>
         </div>
 
