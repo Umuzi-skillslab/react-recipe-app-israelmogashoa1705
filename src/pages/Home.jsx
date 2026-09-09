@@ -8,6 +8,17 @@ const Home = ({ recipes = [] }) => {
   // Limit the homepage to the first three recipes for the featured section.
   const featuredRecipes = recipes.slice(0, 3);
 
+  // Derive category counts to populate the statistics strip.
+  const breakfastCount = recipes.filter(
+    (r) => r.category === 'breakfast'
+  ).length;
+
+  const dinnerCount = recipes.filter(
+    (r) => r.category === 'dinner'
+  ).length;
+
+  const totalRecipes = recipes.length;
+
   return (
     <main className="page-container">
       {/* Hero section introduces Savora and directs users to the recipe collection. */}
