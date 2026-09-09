@@ -40,7 +40,10 @@ const VideoPlayer = ({
                 Your browser does not support HTML5 video.
             </video>
 
-            <p className="media-status">
+            <p
+               className="media-status"
+               style={{ color: isPlaying ? '#166534' : '#78716c' }}
+            >
               {isPlaying
                 ? '▶ Video playing'
                 : '⏸ Video paused'}
