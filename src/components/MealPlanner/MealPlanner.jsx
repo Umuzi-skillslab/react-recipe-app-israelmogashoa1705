@@ -43,8 +43,6 @@ const MealPlanner = ({
           </p>
         </div>
 
-          <h2>Weekly Meal Plan</h2>
-
         <Button
           variant="danger"
           onClick={onClearWeek}
