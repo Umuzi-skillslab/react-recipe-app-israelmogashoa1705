@@ -160,7 +160,7 @@ const RecipeDetailPage = ({
                 <option value="dinner">Dinner</option>
               </select>
 
-              <Button onClick={handleAddToMealPlan}>
+              <Button onClick={handleAddBreakfast}>
                 Add to Meal Plan
               </Button>
             </div>
