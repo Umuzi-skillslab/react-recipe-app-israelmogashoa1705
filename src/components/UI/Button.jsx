@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import styles from './UI.module.css';
 
 const Button = ({
   children,
@@ -26,3 +25,4 @@ Button.propTypes = {
 };
 
 export default Button;
+
