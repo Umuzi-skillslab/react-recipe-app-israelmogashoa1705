@@ -43,9 +43,7 @@ const MealPlanner = ({
           </p>
         </div>
 
-        <div>
           <h2>Weekly Meal Plan</h2>
-        </div>
 
         <Button
           variant="danger"
