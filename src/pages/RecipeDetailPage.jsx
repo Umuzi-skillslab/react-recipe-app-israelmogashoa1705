@@ -13,27 +13,27 @@ const RecipeDetailPage = ({
   onFavoriteToggle,
   onAddToMealPlan,
 }) => {
-  // Get the recipe ID from the current URL.
+  {/* Get the recipe ID from the current URL. */}
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Store the selected day and meal for the weekly meal planner.
+  {/* Store the selected day and meal for the weekly meal planner. */}
   const [selectedDay, setSelectedDay] =
     useState('monday');
   const [selectedMeal, setSelectedMeal] =
     useState('breakfast');
 
-  // Track whether the meal-plan confirmation banner is visible.
+  {/* Track whether the meal-plan confirmation banner is visible. */}
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-  // Convert the URL parameter from a string into a number, then find the matching recipe from the available recipes
+  {/* Convert the URL parameter from a string into a number, then find the matching recipe from the available recipes */}
   const recipe = useMemo(
     () => recipes.find((item) => item.id === Number(id)),
     [recipes, id]
   );
 
 
-  // Display a friendly error message and provide a way back to the recipe list when the requested recipe cannot be found.
+  {/* Display a friendly error message and provide a way back to the recipe list when the requested recipe cannot be found.  */}
   if (!recipe) {
     return (
       <main className="page-container">
@@ -49,12 +49,12 @@ const RecipeDetailPage = ({
     );
   }
 
-  // Check whether the current recipe already exists in the favorites list.
+  {/* Check whether the current recipe already exists in the favorites list. */}
   const isFavorite = favorites.some(
     (favorite) => favorite.id === recipe.id
   );
 
-  // Add the current recipe to the Monday breakfast meal-plan slot.
+  {/* Add the current recipe to the Monday breakfast meal-plan slot. */}
   const handleAddBreakfast = () => {
     onAddToMealPlan(
       selectedDay,
@@ -62,11 +62,11 @@ const RecipeDetailPage = ({
       recipe
     );
     setShowConfirmation(true);
-    // Hide the confirmation banner after two seconds.
+    {/* Hide the confirmation banner after two seconds. */}
     setTimeout(() => setShowConfirmation(false), 2000);
   };
 
-  // Compute the difficulty badge colour without an if-else chain.
+  {/* Compute the difficulty badge colour without an if-else chain. */}
   const difficultyColor =
     recipe.difficulty === 'easy'
       ? '#166534'
@@ -74,7 +74,7 @@ const RecipeDetailPage = ({
         ? '#92400e'
         : '#991b1b';
 
-  // Display the selected recipe, its actions, nutritional information, ingredients, instructions, and media content.
+  {/* Display the selected recipe, its actions, nutritional information, ingredients, instructions, and media content. */}
   return (
     <main className="page-container recipe-detail">
       <Button
@@ -108,7 +108,7 @@ const RecipeDetailPage = ({
         </div>
       )}
 
-      // Display the recipe image and provide controls for favorites, and adding the recipe to the meal plan.
+      {/* Display the recipe image and provide controls for favorites, and adding the recipe to the meal plan. */}
       <div className="detail-grid">
         <Card>
           <img
@@ -117,7 +117,7 @@ const RecipeDetailPage = ({
             className="detail-image"
           />
 
-          // Provide controls for managing favorites and adding the recipe, to specific meal-plan slots.
+          {/* Provide controls for managing favorites and adding the recipe, to specific meal-plan slots. */}
           <div className="detail-actions">
             {/* Toggle favorite status for this recipe. */}
             <Button
