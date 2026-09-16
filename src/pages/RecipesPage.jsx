@@ -20,11 +20,11 @@ const RecipesPage = ({
     useState('all');
   const [sortOption, setSortOption] = useState('title');
 
-  // Manage the recipe loading and error states.
+  {/* Manage the recipe loading and error states. */}
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
-  // Simulate a short data-loading phase for the local recipe dataset.
+  {/* Simulate a short data-loading phase for the local recipe dataset. */}
   useEffect(() => {
     setIsLoading(true);
     setError('');
@@ -47,7 +47,7 @@ const RecipesPage = ({
     return () => clearTimeout(timer);
   }, [recipes]);
 
-  // Build unique category options from the available recipes.
+  {/* Build unique category options from the available recipes. */}
   const categories = useMemo(
     () => [
       ...new Set(
@@ -57,7 +57,7 @@ const RecipesPage = ({
     [recipes]
   );
 
-  // Build unique cuisine options from the available recipes.
+  {/* Build unique cuisine options from the available recipes. */}
   const cuisines = useMemo(
     () => [
       ...new Set(
@@ -67,8 +67,8 @@ const RecipesPage = ({
     [recipes]
   );
 
-  // Filter recipes based on search and selected filters,
-  // then sort the matching results.
+  {/* Filter recipes based on search and selected filters,
+   then sort the matching results. */}
   const filteredRecipes = useMemo(() => {
     const filtered = recipes.filter((recipe) => {
       const normalizedSearch = searchTerm
@@ -134,7 +134,7 @@ const RecipesPage = ({
     sortOption,
   ]);
 
-  // Reset all search, filter, and sort controls to their defaults.
+  {/*Reset all search, filter, and sort controls to their defaults. */}
   const handleClearFilters = () => {
     setSearchTerm('');
     setSelectedCategory('all');

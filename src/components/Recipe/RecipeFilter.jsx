@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-// RecipeFilter displays the available recipe filters and
-// sends the selected values back to the parent component.
+{/*RecipeFilter displays the available recipe filters and
+sends the selected values back to the parent component. */}
 const RecipeFilter = ({
     category,
     cuisine,
@@ -117,8 +117,8 @@ const RecipeFilter = ({
     );
 };
 
-// PropTypes documents the data and callback functions
-// that RecipeFilter expects from its parent component.
+{/* PropTypes documents the data and callback functions
+that RecipeFilter expects from its parent component. */}
 RecipeFilter.propTypes = {
     category: PropTypes.string.isRequired,
     cuisine: PropTypes.string.isRequired,

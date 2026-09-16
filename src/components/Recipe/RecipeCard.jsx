@@ -9,10 +9,10 @@ const RecipeCard = ({
   isFavorite = false,
   onFavoriteToggle,
 }) => {
-  // Calculate the total preparation and cooking time before rendering.
-  const totalTime = recipe.prepTime + recipe.cookTime;
+  {/* Calculate the total preparation and cooking time before rendering. */} 
+  const totalTime = recipe.prepTime + recipe.cookTime; 
 
-  // Convert the difficulty into a visual indicator for the card.
+  {/* Convert the difficulty into a visual indicator for the card. */}
   const difficultyIcon =
     recipe.difficulty === 'easy'
       ? '🟢'

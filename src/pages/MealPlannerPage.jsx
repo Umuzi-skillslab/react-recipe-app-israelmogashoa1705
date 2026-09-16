@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import MealPlanner from '../components/MealPlanner/MealPlanner';
 
-// Provides the page-level container for the weekly meal planner.
+{/* Provides the page-level container for the weekly meal planner. */}
 const MealPlannerPage = ({
   recipes,
   mealPlan,
@@ -10,8 +10,8 @@ const MealPlannerPage = ({
   onRemoveMeal,
   onClearWeek,
 }) => {
-  // Introduce the weekly planning section and explain the purpose
-  // of the meal planner to the user.
+  {/* Introduce the weekly planning section and explain the purpose
+   of the meal planner to the user. */}
   return (
     <main className="page-container">
       <header className="page-header">
@@ -42,7 +42,7 @@ const MealPlannerPage = ({
   );
 };
 
-// Define the required data and callback types expected by the page.
+{/* Define the required data and callback types expected by the page. */}
 MealPlannerPage.propTypes = {
   recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
   mealPlan: PropTypes.object.isRequired,
@@ -51,5 +51,5 @@ MealPlannerPage.propTypes = {
   onClearWeek: PropTypes.func.isRequired,
 };
 
-// Make the page available to the application's routing configuration.
+{/* Make the page available to the application's routing configuration. */}
 export default MealPlannerPage;

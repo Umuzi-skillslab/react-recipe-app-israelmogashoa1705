@@ -13,11 +13,11 @@ import NotFound from './pages/NotFound';
 import { recipesData } from './data/recipesData';
 
 function App() {
-  // Favorites are kept in App so the Navbar, recipe pages, and Favorites page
-  // can all access the same source of truth.
+  {/* Favorites are kept in App so the Navbar, recipe pages, and Favorites page
+   can all access the same source of truth. */}
   const [favorites, setFavorites] = useState([]);
 
-  // Meal planner state is lifted to App because several pages need access to it.
+  {/* Meal planner state is lifted to App because several pages need access to it. */}
   const [mealPlan, setMealPlan] = useState({
     monday: { breakfast: null, lunch: null, dinner: null },
     tuesday: { breakfast: null, lunch: null, dinner: null },
@@ -28,7 +28,7 @@ function App() {
     sunday: { breakfast: null, lunch: null, dinner: null },
   });
 
-  // Load saved data from localStorage when the application first mounts.
+  {/* Load saved data from localStorage when the application first mounts. */}
   useEffect(() => {
     try {
       const savedFavorites = localStorage.getItem('savoraFavorites');
@@ -42,12 +42,12 @@ function App() {
         setMealPlan(JSON.parse(savedMealPlan));
       }
     } catch (error) {
-      // Invalid localStorage data should not crash the application.
+      {/* Invalid localStorage data should not crash the application. */}
       console.error('Could not load saved application data.', error);
     }
   }, []);
 
-  // Persist favorites whenever the favorites array changes.
+  {/* Persist favorites whenever the favorites array changes. */}
   useEffect(() => {
     localStorage.setItem(
       'savoraFavorites',
@@ -55,7 +55,7 @@ function App() {
     );
   }, [favorites]);
 
-  // Persist the meal planner whenever the weekly plan changes.
+  {/* Persist the meal planner whenever the weekly plan changes. */}
   useEffect(() => {
     localStorage.setItem(
       'savoraMealPlan',
@@ -63,7 +63,7 @@ function App() {
     );
   }, [mealPlan]);
 
-  // Toggle a recipe between the favorites collection and the normal recipe list.
+  {/* Toggle a recipe between the favorites collection and the normal recipe list. */}
   const handleFavoriteToggle = (recipe) => {
     setFavorites((currentFavorites) => {
       const alreadyFavorite = currentFavorites.some(
@@ -78,7 +78,7 @@ function App() {
     });
   };
 
-  // Add a recipe to a particular day and meal slot.
+  {/* Add a recipe to a particular day and meal slot. */}
   const handleAddToMealPlan = (day, meal, recipe) => {
     setMealPlan((currentMealPlan) => ({
       ...currentMealPlan,
@@ -89,7 +89,7 @@ function App() {
     }));
   };
 
-  // Remove a recipe from a particular meal slot.
+  {/* Remove a recipe from a particular meal slot. */}
   const handleRemoveFromMealPlan = (day, meal) => {
     setMealPlan((currentMealPlan) => ({
       ...currentMealPlan,
@@ -100,7 +100,7 @@ function App() {
     }));
   };
 
-  // Reset every meal slot to null while preserving all seven days.
+  {/* Reset every meal slot to null while preserving all seven days. */}
   const handleClearMealPlan = () => {
     const emptyPlan = Object.keys(mealPlan).reduce(
       (plan, day) => ({
