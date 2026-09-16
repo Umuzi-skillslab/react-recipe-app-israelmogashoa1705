@@ -21,16 +21,12 @@ const Home = ({ recipes = [] }) => {
 
   return (
     <main className="page-container">
-      {/* Hero section introduces Savora and directs users to the recipe collection. */}
+      {/* Hero section */}
       <section className="hero">
         <div>
-          <span className="eyebrow">
-            Cook · Discover · Plan
-          </span>
+          <span className="eyebrow">Cook · Discover · Plan</span>
 
-          <h1>
-            Delicious ideas for every day.
-          </h1>
+          <h1>Delicious ideas for every day.</h1>
 
           <p>
             Browse {totalRecipes} recipes, save your favourites, and
@@ -45,12 +41,15 @@ const Home = ({ recipes = [] }) => {
           </Link>
         </div>
 
-        <div className="hero-emoji" style={{ fontSize: '6rem' }}>
+        <div
+          className="hero-emoji"
+          style={{ fontSize: '6rem' }}
+        >
           🍝
         </div>
       </section>
 
-            {/* ---- Statistics strip ---- */}
+      {/* Statistics strip */}
       <div className="stats-strip">
         <div className="stat-card">
           <span className="stat-number">{totalRecipes}</span>
@@ -68,7 +67,7 @@ const Home = ({ recipes = [] }) => {
         </div>
       </div>
 
-      {/* Featured recipes demonstrate parent-to-child data flow. */}
+      {/* Featured recipes */}
       <section className="home-section">
         <div className="section-heading">
           <div>
@@ -76,10 +75,7 @@ const Home = ({ recipes = [] }) => {
             <h2>Recipes worth trying</h2>
           </div>
 
-          <Link
-            to="/recipes"
-            className="text-link"
-          >
+          <Link to="/recipes" className="text-link">
             View all →
           </Link>
         </div>
@@ -91,28 +87,45 @@ const Home = ({ recipes = [] }) => {
               title={recipe.title}
               className="featured-card"
             >
-              <p>
-                {recipe.cuisine} · {recipe.difficulty}
-              </p>
+              <img
+                src={recipe.image}
+                alt={recipe.title}
+                className="recipe-image"
+              />
 
-              <p>
-                Ready in{' '}
-                {recipe.prepTime + recipe.cookTime} minutes
-              </p>
+              <div className="recipe-card-content">
+                <span className="recipe-category">
+                  {recipe.category}
+                </span>
 
-              <Link
-                to={`/recipes/${recipe.id}`}
-                className="button button-secondary"
-                style={{ marginTop: '8px' }}
-              >
-                View Recipe
-              </Link>
+                <h2>{recipe.title}</h2>
+
+                <p>
+                  <strong>Cuisine:</strong> {recipe.cuisine}
+                </p>
+
+                <p>
+                  {recipe.cuisine} · {recipe.difficulty}
+                </p>
+
+                <p>
+                  Ready in {recipe.prepTime + recipe.cookTime} minutes
+                </p>
+
+                <Link
+                  to={`/recipes/${recipe.id}`}
+                  className="button button-secondary"
+                  style={{ marginTop: '8px' }}
+                >
+                  View Recipe
+                </Link>
+              </div>
             </Card>
           ))}
         </div>
       </section>
 
-      {/* Audio guide satisfies the cooking tips multimedia requirement. */}
+      {/* Audio guide */}
       <section className="home-section">
         <AudioPlayer
           audioUrl="/assets/audio/breakfast-tips.mp3"
@@ -128,4 +141,3 @@ Home.propTypes = {
 };
 
 export default Home;
-
